@@ -16,16 +16,28 @@ struct ContentView: View {
             VStack {
                 Spacer().frame(height: 25)
                 Text("Downtown Seattle")
-                MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.3321))
+                    .font(.largeTitle)
+                MapView()
+                    .frame(height: 350)
                 
                 List {
-                    Text("Hello, SwiftUI!")
+                    Text("Location 1")
                 }
                 .navigationTitle("")
-                .toolbar {
-                    Text("Roam Rave")
-                    Button("Add") {}
-                }
+                .navigationBarItems(leading:
+                    HStack {
+                        Image("NavIcon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .padding(.leading, -10)
+                        Spacer()
+                        Text("RoamRave")
+                            .foregroundColor(.red)
+                            .bold(true)
+                            .padding(.leading, 30)
+                    }
+                )
                 .toolbarColorScheme(.dark, for: .navigationBar)
                 .toolbarBackground(
                     skyBlue,
@@ -34,21 +46,6 @@ struct ContentView: View {
             }
             .font(.custom("text", size: 30))
         }
-    }
-}
-
-// MapView component
-struct MapView: UIViewRepresentable {
-    let coordinate: CLLocationCoordinate2D
-    
-    func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        mapView.setRegion(MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000), animated: true) // Set the initial region
-        return mapView
-    }
-
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        // Update the view
     }
 }
 

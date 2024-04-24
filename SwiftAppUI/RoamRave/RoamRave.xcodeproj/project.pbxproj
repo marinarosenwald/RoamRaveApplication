@@ -14,6 +14,7 @@
 		9FA4A39F2BD7035C005FDFB0 /* RoamRaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4A39E2BD7035C005FDFB0 /* RoamRaveTests.swift */; };
 		9FA4A3A92BD7035C005FDFB0 /* RoamRaveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4A3A82BD7035C005FDFB0 /* RoamRaveUITests.swift */; };
 		9FA4A3AB2BD7035C005FDFB0 /* RoamRaveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4A3AA2BD7035C005FDFB0 /* RoamRaveUITestsLaunchTests.swift */; };
+		9FA4A3F62BD8B59F005FDFB0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4A3F52BD8B59F005FDFB0 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		9FA4A3A42BD7035C005FDFB0 /* RoamRaveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoamRaveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA4A3A82BD7035C005FDFB0 /* RoamRaveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamRaveUITests.swift; sourceTree = "<group>"; };
 		9FA4A3AA2BD7035C005FDFB0 /* RoamRaveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamRaveUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FA4A3F52BD8B59F005FDFB0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				9FA4A38D2BD7035B005FDFB0 /* RoamRaveApp.swift */,
 				9FA4A38F2BD7035B005FDFB0 /* ContentView.swift */,
+				9FA4A3F52BD8B59F005FDFB0 /* MapView.swift */,
 				9FA4A3912BD7035C005FDFB0 /* Assets.xcassets */,
 				9FA4A3932BD7035C005FDFB0 /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FA4A3902BD7035B005FDFB0 /* ContentView.swift in Sources */,
+				9FA4A3F62BD8B59F005FDFB0 /* MapView.swift in Sources */,
 				9FA4A38E2BD7035B005FDFB0 /* RoamRaveApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
