@@ -1,23 +1,21 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import MapView from 'react-native-maps';
+import { View, Button } from 'react-native';
 import styles from '../styles';
 
-const MapViewComponent = () => {
-  return (
-    <View style={styles.flexContainer}>
-      <Text style={styles.header}>Downtown Seattle</Text>
-      <MapView
-        style={styles.map}
-        region={{
-          latitude: 47.6062,
-          longitude: -122.3321,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        }}
-      />
-    </View>
-  );
-};
+const MapViewComponent = ({ navigation }) => (
+  <View style={styles.flexContainer}>
+    <MapView
+      style={styles.map}
+      initialRegion={{
+        latitude: 47.6062,
+        longitude: -122.3321,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    />
+    <Button title="Go Back" onPress={() => navigation.goBack()} />
+  </View>
+);
 
 export default MapViewComponent;

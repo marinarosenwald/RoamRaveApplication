@@ -1,26 +1,24 @@
-import React from 'react';
-import { SafeAreaView, StatusBar, View, Text } from 'react-native';
-import MapView from 'react-native-maps';
-import styles from './styles';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ContentView from './components/ContentView';
+import FormsView from './components/FormsView';
+import MapViewComponent from './components/MapViewComponent';
+import Menu from './components/Menu';
 
-const App = () => {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <SafeAreaView style={styles.flexContainer}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.container}>
-        <Text style={styles.header}>Downtown Seattle</Text>
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: 47.6062,
-            longitude: -122.3321,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={ContentView} options={{ title: 'Welcome' }} />
+        <Stack.Screen name="Form" component={FormsView} options={{ title: 'Fill Form' }} />
+        <Stack.Screen name="Map" component={MapViewComponent} options={{ title: 'View Map' }} />
+        <Stack.Screen name="Menu" component={Menu} options={{ title: 'Menu' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
 export default App;
