@@ -51,7 +51,7 @@ struct Menu: View {
                         .cornerRadius(10)
                 }
                 
-                NavigationLink(destination: MapView()) {
+                NavigationLink(destination: FormsView()) {
                     Text("Forms")
                         .foregroundColor(Color.black)
                         .frame(width: 275, height: 70)
@@ -105,7 +105,7 @@ struct Menu: View {
                     selectedOptionIndex = index
                 }
             }
-        } . navigationBarBackButtonHidden(true)
+        } .navigationBarBackButtonHidden(true)
     }
 }
 

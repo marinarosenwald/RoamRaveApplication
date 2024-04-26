@@ -54,7 +54,7 @@ struct ContentView: View {
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             .font(.custom("text", size: 30))
-        } . navigationBarBackButtonHidden(true)
+        } .navigationBarBackButtonHidden(true)
     }
 }
 
