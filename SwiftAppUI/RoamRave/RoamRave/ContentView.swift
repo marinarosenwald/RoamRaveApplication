@@ -10,12 +10,17 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+    
+    @Binding var city: String
+    
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
+    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0) //    254, 188, 255
+    
     var body: some View {
         NavigationView {
             VStack {
                 Spacer().frame(height: 25)
-                Text("Downtown Seattle")
+                Text(city)
                     .font(.largeTitle)
                 MapView()
                     .frame(height: 350)
@@ -26,14 +31,18 @@ struct ContentView: View {
                 .navigationTitle("")
                 .navigationBarItems(leading:
                     HStack {
-                        Image("NavIcon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 80, height: 80)
-                            .padding(.leading, -10)
+                        NavigationLink{
+                            Menu()
+                        } label: {
+                            Image("NavIcon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .padding(.leading, -10)
+                        }
                         Spacer()
                         Text("RoamRave")
-                            .foregroundColor(.red)
+                        .foregroundColor(.black)
                             .bold(true)
                             .padding(.leading, 30)
                     }
@@ -45,10 +54,10 @@ struct ContentView: View {
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             .font(.custom("text", size: 30))
-        }
+        } . navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(city: .constant("Downtown Seattle"))
 }
