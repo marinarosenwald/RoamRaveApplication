@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ContentView from './components/ContentView';
 import FormsView from './components/FormsView';
+
 import MapViewComponent from './components/MapViewComponent';
 import Menu from './components/Menu';
 

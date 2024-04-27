@@ -2,10 +2,51 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    formScreenContainer: {
+        flex: 1,
+        backgroundColor: '#FFF', 
+      },
+      formHeaderContainer: {
+        backgroundColor: '#ADD8E6', 
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
+      },
+      formHeaderText: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#000', 
+        marginLeft: 16,
+      },
+      formButton: {
+        backgroundColor: '#ADD8E6', 
+        padding: 20,
+        marginHorizontal: 16,
+        marginVertical: 8,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      formButtonTitle: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#FFFFFF', 
+      },
+      formButtonDescription: {
+        fontSize: 16,
+        color: '#FFFFFF', 
+        marginTop: 10,
+        textAlign: 'center',
+      },
+      menuIcon: {
+        width: 30,
+        height: 30, 
+        resizeMode: 'contain',
+      },
   screenContainer: {
     flex: 1,
     borderWidth: 8,
-    borderColor: '#0000FF', // Deep blue border color
+    borderColor: '#0000FF', 
     borderRadius: 25,
     margin: 10,
     marginTop: 50,

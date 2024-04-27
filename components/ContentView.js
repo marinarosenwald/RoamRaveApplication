@@ -16,9 +16,9 @@ const ContentView = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Suggestions')}>
           <Text style={styles.buttonText}>SUGGESTIONS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Forms')}>
-          <Text style={styles.buttonText}>FORMS</Text>
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Form')}>
+    <Text style={styles.buttonText}>FORMS</Text>
+</TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Favorites')}>
           <Text style={styles.buttonText}>FAVORITES</Text>
         </TouchableOpacity>
