@@ -7,7 +7,7 @@ const FormsView = ({ navigation }) => {
 
   const handleSubmit = () => {
     alert(`Form submitted with: ${input}`);
-    setInput(''); // Clear input after submit
+    setInput(''); 
   };
 
   return (
