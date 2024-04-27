@@ -82,9 +82,7 @@ struct FormsView: View {
                     }
                 )
                 .toolbarColorScheme(.dark, for: .navigationBar)
-                .toolbarBackground(
-                    skyBlue,
-                    for: .navigationBar)
+                .toolbarBackground(skyBlue, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             

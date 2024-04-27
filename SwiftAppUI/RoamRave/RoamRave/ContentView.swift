@@ -22,12 +22,18 @@ struct ContentView: View {
                 Spacer().frame(height: 25)
                 Text(city)
                     .font(.largeTitle)
-                MapView()
+                MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.335))
                     .frame(height: 350)
-                
                 List {
-                    Text("Location 1")
+                    ForEach(activities) { activity in
+                        if activity.city == city {
+                            NavigationLink(destination: ActivityDetails(activity: activity)) {
+                                ActivitiesRow(activity: activity)
+                            }
+                        }
+                    }
                 }
+                
                 .navigationTitle("")
                 .navigationBarItems(leading:
                     HStack {
@@ -42,19 +48,18 @@ struct ContentView: View {
                         }
                         Spacer()
                         Text("RoamRave")
-                        .foregroundColor(.black)
+                            .foregroundColor(.black)
                             .bold(true)
                             .padding(.leading, 30)
                     }
                 )
                 .toolbarColorScheme(.dark, for: .navigationBar)
-                .toolbarBackground(
-                    skyBlue,
-                    for: .navigationBar)
+                .toolbarBackground(skyBlue, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             .font(.custom("text", size: 30))
-        } .navigationBarBackButtonHidden(true)
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

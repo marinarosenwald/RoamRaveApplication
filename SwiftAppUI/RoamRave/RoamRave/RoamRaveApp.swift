@@ -11,7 +11,7 @@ import SwiftUI
 struct RoamRaveApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(city: .constant("Downtown Seattle"))
+            Menu()
         }
     }
 }

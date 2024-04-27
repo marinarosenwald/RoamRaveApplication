@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct Menu: View {
     
@@ -39,7 +40,7 @@ struct Menu: View {
                     .pickerStyle(MenuPickerStyle())
                     .accentColor(.black)
                     .scaleEffect(1.6)
-                    .padding() 
+                    .padding()
                 }
                 
                 NavigationLink(destination: ContentView(city: $city)) {
@@ -60,7 +61,7 @@ struct Menu: View {
                         .cornerRadius(10)
                 }
                 
-                NavigationLink(destination: MapView()) {
+                NavigationLink(destination: Favorites()) {
                     Text("Favorites")
                         .foregroundColor(Color.black)
                         .frame(width: 275, height: 70)
@@ -68,7 +69,7 @@ struct Menu: View {
                         .background(skyBlue)
                         .cornerRadius(10)
                 }
-                NavigationLink(destination: MapView()) {
+                NavigationLink(destination: MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.335))) {
                     Text("Memories")
                         .foregroundColor(Color.black)
                         .frame(width: 275, height: 70)
@@ -79,24 +80,22 @@ struct Menu: View {
                 
                 .navigationTitle("")
                 .navigationBarItems(leading:
-                    HStack {
-                        Image("VertNavIcon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 80, height: 80)
-                            .padding(.leading, -10)
-                        
-                        Spacer()
-                        Text("RoamRave")
-                            .foregroundColor(.black)
-                            .bold(true)
-                            .padding(.leading, 30)
-                    }
+                                        HStack {
+                    Image("VertNavIcon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .padding(.leading, -10)
+                    
+                    Spacer()
+                    Text("RoamRave")
+                        .foregroundColor(.black)
+                        .bold(true)
+                        .padding(.leading, 30)
+                }
                 )
                 .toolbarColorScheme(.dark, for: .navigationBar)
-                .toolbarBackground(
-                    skyBlue,
-                    for: .navigationBar)
+                .toolbarBackground(skyBlue, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             .font(.custom("text", size: 30))
@@ -105,8 +104,9 @@ struct Menu: View {
                     selectedOptionIndex = index
                 }
             }
-        } .navigationBarBackButtonHidden(true)
-    }
+        }
+        .navigationBarBackButtonHidden(true)
+    }
 }
 
 #Preview {
