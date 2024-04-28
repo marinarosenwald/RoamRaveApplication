@@ -1,5 +1,6 @@
 // ContentView.js
 import React from 'react';
+
 import { View, Text, TouchableOpacity, Image, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 const ContentView = ({ navigation }) => {
@@ -10,7 +11,7 @@ const ContentView = ({ navigation }) => {
         <Image source={require('../assets/VertNavIcon.png')} style={styles.menuIcon} />
       </View>
       <View style={styles.container}>
-        <TouchableOpacity style={[styles.button, styles.selectedButton]} onPress={() => navigation.navigate('Downtown')}>
+        <TouchableOpacity style={[styles.button, styles.selectedButton]} onPress={() => navigation.navigate('Map')}>
           <Text style={styles.buttonText}>DOWNTOWN SEATTLE</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Suggestions')}>
@@ -22,9 +23,12 @@ const ContentView = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Favorites')}>
           <Text style={styles.buttonText}>FAVORITES</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Memories')}>
-          <Text style={styles.buttonText}>MEMORIES</Text>
-        </TouchableOpacity>
+        <TouchableOpacity
+  style={styles.button}
+  onPress={() => navigation.navigate('Memories')} // Make sure 'Memories' matches the name given in the Stack Navigator
+>
+  <Text style={styles.buttonText}>MEMORIES</Text>
+</TouchableOpacity>
       </View>
     </SafeAreaView>
   );

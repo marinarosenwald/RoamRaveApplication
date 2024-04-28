@@ -2,6 +2,49 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#FFF', // or any other color you prefer
+      },
+      header: {
+        backgroundColor: '#ADD8E6', // adjust the color to match your header
+        padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      },
+      menuIconContainer: {
+        // Style for the menu icon container
+        paddingRight: 10, // Add padding if necessary
+      },
+      menuIcon: {
+        fontSize: 24, // adjust as necessary
+        color: '#FFF', // adjust as necessary
+      },
+      headerTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFF', // adjust the color to match your header text color
+        flex: 1,
+        textAlign: 'center', // This centers the title
+      },
+      map: {
+        height: 200, // Adjust the height of the map
+        width: '100%',
+      },
+      placesContainer: {
+        flex: 1,
+      },
+      placeItem: {
+        backgroundColor: '#ADD8E6', // adjust the color to match your items
+        padding: 20,
+        margin: 10,
+        borderRadius: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#FFF', // adjust the text color to match your design
+        // Add any other styling for the place items
+      },
     formScreenContainer: {
         flex: 1,
         backgroundColor: '#FFF', 

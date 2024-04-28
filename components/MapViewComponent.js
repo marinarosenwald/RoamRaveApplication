@@ -1,20 +1,35 @@
 import React from 'react';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
-import { View, Button } from 'react-native';
-import styles from '../styles';
+import styles from '../styles'; // Make sure the path to your styles file is correct
+
+const places = [
+  'ELLIOTT’S OYSTER HOUSE',
+  'SEATTLE ART MUSEUM',
+  'PIKE PLACE MARKET',
+  'SEATTLE AQUARIUM',
+  'THE PINK DOOR'
+  // Add more places as needed
+];
 
 const MapViewComponent = ({ navigation }) => (
-  <View style={styles.flexContainer}>
+  <View style={styles.container}>
+    <View style={styles.header}>
+      <TouchableOpacity style={styles.menuIconContainer} onPress={() => navigation.toggleDrawer()}>
+        {/* Replace with your menu icon */}
+        <Text style={styles.menuIcon}>☰</Text>
+      </TouchableOpacity>
+      <Text style={styles.headerTitle}>DOWNTOWN SEATTLE</Text>
+    </View>
     <MapView
       style={styles.map}
-      initialRegion={{
-        latitude: 47.6062,
-        longitude: -122.3321,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
+      // Other MapView properties
     />
-    <Button title="Go Back" onPress={() => navigation.goBack()} />
+    <ScrollView style={styles.placesContainer}>
+      {places.map((place, index) => (
+        <Text key={index} style={styles.placeItem}>{place}</Text>
+      ))}
+    </ScrollView>
   </View>
 );
 
