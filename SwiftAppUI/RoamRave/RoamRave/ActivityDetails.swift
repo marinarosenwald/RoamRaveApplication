@@ -31,7 +31,7 @@ struct ActivityDetails: View {
                             .foregroundStyle(.secondary)
                         }
                         Button(action: {
-                            
+                            // update json file somehow
                         }) {
                             Image(activity.isFavorite ? "FilledHeart" : "EmptyHeart")
                                 .resizable()

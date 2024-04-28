@@ -12,10 +12,10 @@ struct Menu: View {
     
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0) //    254, 188, 255
-//    let city = UserDefaults.standard.string(forKey: "city")
+
     @AppStorage ("city") private var city = "Downtown Seattle"
-//    @State private var city = "Downtown Seattle"
-    @State private var isPopoverPresented = false
+
+
     @State private var selectedOptionIndex = 0
     let options = ["Downtown Seattle", "Bellevue", "Redmond"]
     
