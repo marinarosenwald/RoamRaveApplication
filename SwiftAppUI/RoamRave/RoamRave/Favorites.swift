@@ -15,8 +15,23 @@ struct Favorites: View {
         NavigationView {
             VStack{
                 Spacer().frame(height: 25)
-                Text("Favorites")
-                    .font(.largeTitle)
+                HStack{
+                    Image("FilledHeart")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+//                        .padding(.bottom, 10)
+                        .padding(.trailing, 10)
+                    Text("Favorites")
+                        .font(.largeTitle)
+                    Image("FilledHeart")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+//                        .padding(.bottom, 10)
+                        .padding(.leading, 10)
+                }
+                
                 
                 List {
                     ForEach(activities.filter { $0.isFavorite }) { activity in

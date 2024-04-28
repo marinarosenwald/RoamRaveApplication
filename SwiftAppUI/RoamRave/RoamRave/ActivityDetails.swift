@@ -16,16 +16,31 @@ struct ActivityDetails: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                
                 VStack(alignment: .leading) {
                     Spacer().frame(height: 10)
-                    Text(activity.name)
-                        .font(.title)
-                    
-                    HStack {
-                        Text(activity.city)
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text(activity.name)
+                                .font(.title)
+                            
+                            HStack {
+                                Text(activity.city)
+                            }
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            Image(activity.isFavorite ? "FilledHeart" : "EmptyHeart")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .padding(.bottom, 10)
+                                .padding(.leading, 10)
+                        }
                     }
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
                 }
                 CloseMapView(coordinate: activity.locationCoordinate)
                     .frame(height: 300)
@@ -60,5 +75,5 @@ struct ActivityDetails: View {
 }
 
 #Preview {
-    ActivityDetails(activity: activities[1])
+    ActivityDetails(activity: activities[2])
 }

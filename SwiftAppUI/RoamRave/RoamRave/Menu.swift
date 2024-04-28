@@ -69,7 +69,7 @@ struct Menu: View {
                         .background(skyBlue)
                         .cornerRadius(10)
                 }
-                NavigationLink(destination: MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.335))) {
+                NavigationLink(destination: Memories()) {
                     Text("Memories")
                         .foregroundColor(Color.black)
                         .frame(width: 275, height: 70)
