@@ -24,6 +24,7 @@ struct ContentView: View {
                     .font(.largeTitle)
                 MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.335))
                     .frame(height: 350)
+                
                 List {
                     ForEach(activities) { activity in
                         if activity.city == city {
@@ -32,7 +33,14 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .listRowBackground(skyBlue)
+                    .listRowSeparatorTint(.black)
+                    .padding(1)
+                    .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                        return viewDimensions[.listRowSeparatorLeading] - 20
+                    }
                 }
+                .listStyle(PlainListStyle())
                 
                 .navigationTitle("")
                 .navigationBarItems(leading:
@@ -58,6 +66,7 @@ struct ContentView: View {
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             .font(.custom("text", size: 30))
+            
         }
         .navigationBarBackButtonHidden(true)
     }
