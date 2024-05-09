@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Hiking", "description": "Explore the mountains." },
+    { "id": 2, "name": "Camping", "description": "Spend a night in nature." },
+    { "id": 3, "name": "Kayaking", "description": "Paddle through rivers." }
+  ]
+  
