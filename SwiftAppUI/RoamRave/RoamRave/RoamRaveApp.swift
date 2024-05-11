@@ -14,8 +14,6 @@ struct RoamRaveApp: App {
        var body: some Scene {
            WindowGroup {
                Menu()
-                   
-               // Pass the viewModel as an environment object
            }
        }
    }
