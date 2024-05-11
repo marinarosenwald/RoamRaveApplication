@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    
+    @StateObject private var viewModel = ActivitiesViewModel()
     @Binding var city: String
     
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
@@ -24,9 +24,8 @@ struct ContentView: View {
                     .font(.largeTitle)
                 MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.335))
                     .frame(height: 350)
-                
                 List {
-                    ForEach(activities) { activity in
+                    ForEach(viewModel.activities) { activity in
                         if activity.city == city {
                             NavigationLink(destination: ActivityDetails(activity: activity)) {
                                 ActivitiesRow(activity: activity)
@@ -41,7 +40,7 @@ struct ContentView: View {
                     }
                 }
                 .listStyle(PlainListStyle())
-                
+
                 .navigationTitle("")
                 .navigationBarItems(leading:
                     HStack {
@@ -69,6 +68,7 @@ struct ContentView: View {
             
         }
         .navigationBarBackButtonHidden(true)
+        .environmentObject(viewModel)
     }
 }
 

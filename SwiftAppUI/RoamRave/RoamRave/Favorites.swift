@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Favorites: View {
+    @StateObject private var viewModel = ActivitiesViewModel()
+    
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
     
@@ -34,7 +36,7 @@ struct Favorites: View {
                 
                 
                 List {
-                    ForEach(activities.filter { $0.isFavorite }) { activity in
+                    ForEach(viewModel.activities.filter { $0.isFavorite }) { activity in
                         NavigationLink(destination: ActivityDetails(activity: activity)) {
                             ActivitiesRow(activity: activity)
                         }

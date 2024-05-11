@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct RoamRaveApp: App {
-    var body: some Scene {
-        WindowGroup {
-            Menu()
-        }
-    }
-}
+    @StateObject private var viewModel = ActivitiesViewModel()
+
+       var body: some Scene {
+           WindowGroup {
+               Menu()
+                   
+               // Pass the viewModel as an environment object
+           }
+       }
+   }

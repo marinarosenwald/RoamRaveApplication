@@ -14,7 +14,22 @@ struct Memories: View {
     var body: some View {
         NavigationView{
             VStack{
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                Text("Memories")
+                    .font(.largeTitle)
+                List {
+                    ForEach(activities.filter { $0.isFavorite }) { activity in
+                        NavigationLink(destination: ActivityDetails(activity: activity)) {
+                            ActivitiesRow(activity: activity)
+                        }
+                    }
+                    .listRowBackground(babyPink)
+                    .listRowSeparatorTint(.black)
+                    .padding(3)
+                    .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                        return viewDimensions[.listRowSeparatorLeading] - 20
+                    }
+                }
+                .listStyle(PlainListStyle())
                     .navigationTitle("")
                     .navigationBarItems(leading:
                                             HStack {
