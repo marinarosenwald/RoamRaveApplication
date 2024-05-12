@@ -14,7 +14,8 @@ struct Menu: View {
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0) //    254, 188, 255
 
     @AppStorage ("city") private var city = "Downtown Seattle"
-
+    @State private var latitude: Double = 47.6062
+    @State private var longitude: Double = -122.335
 
     @State private var selectedOptionIndex = 0
     let options = ["Downtown Seattle", "Bellevue", "Redmond"]
@@ -36,6 +37,7 @@ struct Menu: View {
                     }
                     .onChange(of: selectedOptionIndex) {
                         city = options[selectedOptionIndex]
+                        updateCoordinates(city: city)
                     }
                     .pickerStyle(MenuPickerStyle())
                     .accentColor(.black)
@@ -43,7 +45,7 @@ struct Menu: View {
                     .padding()
                 }
                 
-                NavigationLink(destination: ContentView(city: $city)) {
+                NavigationLink(destination: ContentView(city: $city,  lat: $latitude, long: $longitude)) {
                     Text("Suggestions")
                         .foregroundColor(Color.black)
                         .frame(width: 275, height: 70)
@@ -107,6 +109,22 @@ struct Menu: View {
         }
         .navigationBarBackButtonHidden(true)
     }
+    func updateCoordinates(city: String) {
+        // Update latitude and longitude based on the selected city
+        switch city {
+        case "Downtown Seattle":
+            latitude = 47.6062
+            longitude = -122.335
+        case "Bellevue":
+            latitude = 47.61580
+            longitude = -122.19995
+        case "Redmond":
+            latitude = 47.67302
+            longitude = -122.12105
+        default:
+            break
+        }
+    }
 }
 
 #Preview {

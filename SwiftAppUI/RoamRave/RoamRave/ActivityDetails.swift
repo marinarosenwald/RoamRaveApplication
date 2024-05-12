@@ -1,3 +1,4 @@
+
 //
 //  ActivityDetails.swift
 //  RoamRave
@@ -8,7 +9,9 @@
 import SwiftUI
 
 struct ActivityDetails: View {
-    var activity: Activities
+//    var activity: Activities
+    @State var activity: Activities
+    @EnvironmentObject var viewModel: ActivitiesViewModel
 
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
@@ -31,7 +34,9 @@ struct ActivityDetails: View {
                             .foregroundStyle(.secondary)
                         }
                         Button(action: {
-                            // update json file somehow
+                            viewModel.toggleFavorite(for: activity)
+                            activity.isFavorite.toggle()
+                            print(activity.isFavorite)
                         }) {
                             Image(activity.isFavorite ? "FilledHeart" : "EmptyHeart")
                                 .resizable()
@@ -72,6 +77,29 @@ struct ActivityDetails: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(false)
     }
+    
+    
+//    private func toggleFavorite() {
+//        // Update the activities array with the modified activity
+//        if let index = activities.firstIndex(where: { $0.id == activity.id }) {
+//            activities[index].isFavorite.toggle()
+//            activity.isFavorite.toggle()
+//
+//            // Encode the updated data
+//            let encoder = JSONEncoder()
+//            encoder.outputFormatting = .prettyPrinted
+//            if let updatedData = try? encoder.encode(activities),
+//               let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("ActivitiesData.json") {
+//                do {
+//                    try updatedData.write(to: fileURL)
+//                    print("Updated data saved to 'ActivitiesData.json'")
+//                } catch {
+//                    print("Error saving updated data: \(error)")
+//                }
+//            }
+//        }
+//    }
+
 }
 
 #Preview {
