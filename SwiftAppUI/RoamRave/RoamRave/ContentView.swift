@@ -12,6 +12,8 @@ import MapKit
 struct ContentView: View {
     @StateObject private var viewModel = ActivitiesViewModel()
     @Binding var city: String
+    @Binding var lat: Double
+    @Binding var long: Double
     
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0) //    254, 188, 255
@@ -22,7 +24,7 @@ struct ContentView: View {
                 Spacer().frame(height: 25)
                 Text(city)
                     .font(.largeTitle)
-                MapView(coordinate: CLLocationCoordinate2D(latitude: 47.6062, longitude: -122.335))
+                MapView(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long))
                     .frame(height: 350)
                 List {
                     ForEach(viewModel.activities) { activity in
@@ -73,5 +75,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(city: .constant("Downtown Seattle"))
+    ContentView(city: .constant("Downtown Seattle"), lat: .constant(47.6062), long: .constant(-122.335))
 }

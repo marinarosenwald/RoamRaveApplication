@@ -45,11 +45,9 @@ struct MemoryDetail: View {
             }
             Text(memory.summary)
                 .foregroundColor(Color.black)
-                .frame(width: 300)
+                .frame(width: 300, alignment: .leading)
                 .padding()
                 .background(babyPink)
-                .multilineTextAlignment(.leading)
-                
                 
             Spacer()
             

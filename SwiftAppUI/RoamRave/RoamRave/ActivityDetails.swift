@@ -38,7 +38,7 @@ struct ActivityDetails: View {
                             activity.isFavorite.toggle()
                             print(activity.isFavorite)
                         }) {
-                            Image(systemName: activity.isFavorite ? "heart.fill" : "heart")
+                            Image(activity.isFavorite ? "FilledHeart" : "EmptyHeart")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
