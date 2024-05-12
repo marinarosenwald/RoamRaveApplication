@@ -14,28 +14,60 @@ struct AddMemory: View {
     @State private var selectedImages: [UIImage] = []
     @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var summaryHeight: CGFloat = 200
+    @State private var titleHeight: CGFloat = 50
     @Environment(\.presentationMode) var presentationMode
+
+    
+    let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
+    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
+    
+    func saveUserInput() {
+        UserDefaults.standard.set(title, forKey: "title")
+        UserDefaults.standard.set(summary, forKey: "summary")
+    }
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Memory Details")) {
-                    TextField("Title", text: $title)
-                    TextField("Summary", text: $summary)
-                }
-                Section(header: Text("Photos")) {
+            ScrollView {
+                VStack{
+                    Spacer().frame(height: 25)
+                    
+                    TextField("Title of your entry... ", text: $title, axis: .vertical)
+                        .foregroundColor(Color.black)
+                        .frame(width: 275, height: titleHeight)
+                        .padding()
+                        .background(babyPink)
+                        .lineLimit(nil)
+                        .onChange(of: title) {
+                            let newHeight = max(50, heightForText(text: title, font: .systemFont(ofSize: 19), minH: 50, width: 275))
+                            titleHeight = newHeight
+                        }
+                    
                     Button(action: {
                         sourceType = .photoLibrary
                         showImagePicker = true
                     }) {
                         Text("Select from Library")
                     }
+                    .foregroundColor(Color.black)
+                    .frame(width: 275, height: 70)
+                    .padding()
+                    .background(skyBlue)
+                    .cornerRadius(10)
+                    
                     Button(action: {
                         sourceType = .camera
                         showImagePicker = true
                     }) {
                         Text("Take Photo")
                     }
+                    .foregroundColor(Color.black)
+                    .frame(width: 275, height: 70)
+                    .padding()
+                    .background(skyBlue)
+                    .cornerRadius(10)
+                    
                     if !selectedImages.isEmpty {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
@@ -43,26 +75,46 @@ struct AddMemory: View {
                                     Image(uiImage: image)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 100, height: 100)
+                                        .frame(width: 150, height: 150)
+                                        .padding(.leading, 20)
+                                    
                                 }
                             }
                         }
                     }
+                    
+                    
+                    TextField("Write your journal entry here...", text: $summary, axis: .vertical)
+                        .foregroundColor(Color.black)
+                        .frame(width: 275, height: summaryHeight)
+                        .padding()
+                        .background(babyPink)
+                        .lineLimit(nil)
+                        .onChange(of: summary) {
+                            let newHeight = max(200, heightForText(text: summary, font: .systemFont(ofSize: 19), minH: 200, width: 275))
+                            summaryHeight = newHeight
+                        }
                 }
-            }
-            .navigationTitle("Add Memory")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        saveMemory()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Save") {
+                            saveMemory()
+                        }
                     }
                 }
-            }
-            .sheet(isPresented: $showImagePicker) {
-                ImagePicker(sourceType: sourceType, selectedImages: $selectedImages)
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(sourceType: sourceType, selectedImages: $selectedImages)
+                }
             }
         }
     }
+    
+    func heightForText(text: String, font: UIFont, minH: CGFloat, width: CGFloat) -> CGFloat {
+            let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+            let boundingBox = text.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
+            return max(minH, boundingBox.height)
+        }
+    
     func saveMemory() {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             print("Error: Unable to access documents directory")

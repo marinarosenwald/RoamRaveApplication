@@ -10,13 +10,14 @@ import SwiftUI
 struct MemoryDetail: View {
     let memory: Memory
 
+    let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
+    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
+    
     var body: some View {
         VStack {
+            Spacer().frame(height: 25)
             Text(memory.title)
                 .font(.title)
-                .padding()
-            
-            Text(memory.summary)
                 .padding()
 
             // Display memory photos
@@ -42,10 +43,17 @@ struct MemoryDetail: View {
                 }
                 .padding()
             }
-            
+            Text(memory.summary)
+                .foregroundColor(Color.black)
+                .frame(width: 300)
+                .padding()
+                .background(babyPink)
+                .multilineTextAlignment(.leading)
+                
+                
             Spacer()
+            
         }
-        .navigationBarTitle(Text("Memory Details"), displayMode: .inline)
     }
 }
 #Preview {

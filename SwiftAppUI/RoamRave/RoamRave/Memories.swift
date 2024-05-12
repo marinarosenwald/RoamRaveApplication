@@ -30,7 +30,14 @@ struct Memories: View {
                     NavigationLink(destination: MemoryDetail(memory: memory)) {
                         Text(memory.title)
                     }
+                    .listRowBackground(babyPink)
+                    .listRowSeparatorTint(.black)
+                    .padding(3)
+                    .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                        return viewDimensions[.listRowSeparatorLeading] - 20
+                    }
                 }
+                .listStyle(PlainListStyle())
                 .onAppear {
                     loadMemories()
                 }
