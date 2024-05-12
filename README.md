@@ -1,5 +1,5 @@
 # RoamRave
-Surbhi Gupta, Marina Rosenwald
+Marina Rosenwald, Surbhi Gupta
 
 Version 3
 # Summary of Project
