@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Elliott's Oyster House",
+        "category": "Resturant",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1001,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.34037,
+            "latitude": 47.6054
+        },
+        "description": "Suscipit inceptos est felis purus.",
+    },{
+        "name": "Seattle Art Museum",
+        "category": "Museum",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1002,
+        "isFeatured": true,
+        "isFavorite": true,
+        "coordinates": {
+            "longitude": -122.33787,
+            "latitude": 47.60737
+        },
+        "description": "Suscipit inceptos est feli.",
+    },{
+        "name": "Bellevue Art Museum",
+        "category": "Museum",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1003,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20133,
+            "latitude": 47.61533
+        },
+        "description": "Suscipit inceptos est f.",
+    },{
+        "name": "Matador",
+        "category": "Resturant",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1004,
+        "isFeatured": true,
+        "isFavorite": true,
+        "coordinates": {
+            "longitude": -122.12306,
+            "latitude": 47.67327
+        },
+        "description": "Suscipit inceptos est felis purus aenean.",
+    }
+    
+]
