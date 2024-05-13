@@ -1,6 +1,6 @@
-// components/Memories.js
 import React from 'react';
-import { View, FlatList, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const memories = [
   { id: 1, name: 'Elliott’s Oyster House', date: '8/4/23', entry: 'Tried some local oysters and crab...' },
@@ -14,7 +14,9 @@ const MemoryRow = ({ item }) => (
   </View>
 );
 
-const Memories = ({ navigation }) => {
+const Memories = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -22,13 +24,11 @@ const Memories = ({ navigation }) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <MemoryRow item={item} />}
       />
-
-      <Text style={styles.title}>Write Your Journal Entry Here</Text>
-      <TextInput style={styles.input} placeholder="Title of your entry..." />
-      <TextInput style={styles.input} placeholder="Write your journal entry..." />
-
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-        <Text style={styles.backButtonText}>Back</Text>
+      <TouchableOpacity 
+        style={styles.addButton} 
+        onPress={() => navigation.navigate('AddMemory')}
+      >
+        <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,53 +37,44 @@ const Memories = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    backgroundColor: '#B0E0E6', // Light blue background
   },
   row: {
-    padding: 15,
-    marginBottom: 10,
-    backgroundColor: 'white',
-    borderRadius: 8,
+    backgroundColor: '#FFC0CB', // Pink background for each memory
+    borderRadius: 10,
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 4,
   },
   name: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'black', // Ensuring text is black for high contrast
   },
   entry: {
     fontSize: 16,
-    color: '#666',
+    color: 'black', // Ensuring text is black for readability
   },
-  input: {
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  backButton: {
-    padding: 15,
+  addButton: {
+    position: 'absolute',
+    right: 30,
+    bottom: 30,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: '#007bff',
-    borderRadius: 8,
+    justifyContent: 'center',
     alignItems: 'center',
+    elevation: 8,
   },
-  backButtonText: {
+  addButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 });
