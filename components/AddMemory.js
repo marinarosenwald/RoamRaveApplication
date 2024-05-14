@@ -1,23 +1,71 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddMemory = ({ navigation }) => {
   const [title, setTitle] = useState('');
-  const [entry, setEntry] = useState('');
-  
-  const handleSave = () => {
-    // Logic to save the memory
-    navigation.goBack();
+  const [summary, setSummary] = useState('');
+  const [selectedImages, setSelectedImages] = useState([]);
+
+  const handleSelectFromLibrary = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Sorry, we need camera roll permissions to make this work!');
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: true,
+    });
+
+    if (!result.cancelled) {
+      setSelectedImages([...selectedImages, ...result.selected.map((image) => image.uri)]);
+    }
+  };
+
+  const handleTakePhoto = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Sorry, we need camera permissions to make this work!');
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    });
+
+    if (!result.cancelled) {
+      setSelectedImages([...selectedImages, result.uri]);
+    }
+  };
+
+  const saveMemory = async () => {
+    try {
+      const memories = JSON.parse(await AsyncStorage.getItem('memories')) || [];
+      const newMemory = {
+        id: new Date().toISOString(),
+        title,
+        summary,
+        photos: selectedImages,
+      };
+      const updatedMemories = [...memories, newMemory];
+      await AsyncStorage.setItem('memories', JSON.stringify(updatedMemories));
+      navigation.goBack();
+    } catch (error) {
+      console.error('Error saving memory:', error);
+    }
   };
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.navBar}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.navButton}>⟨ Back</Text>
+          <Text style={styles.navButton}>Cancel</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleSave}>
-          <Text style={styles.navButton}>✔</Text>
+        <TouchableOpacity onPress={saveMemory}>
+          <Text style={styles.navButton}>Save</Text>
         </TouchableOpacity>
       </View>
       <TextInput
@@ -27,14 +75,22 @@ const AddMemory = ({ navigation }) => {
         placeholder="Title of your entry..."
         placeholderTextColor="#666"
       />
-      <TouchableOpacity style={styles.photoButton}>
-        <Text style={styles.photoButtonText}>Add Photos</Text>
+      <TouchableOpacity style={styles.photoButton} onPress={handleSelectFromLibrary}>
+        <Text style={styles.photoButtonText}>Select from Library</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.photoButton} onPress={handleTakePhoto}>
+        <Text style={styles.photoButtonText}>Take a Photo</Text>
+      </TouchableOpacity>
+      <ScrollView horizontal>
+        {selectedImages.map((uri, index) => (
+          <Image key={index} source={{ uri }} style={styles.photo} />
+        ))}
+      </ScrollView>
       <TextInput
         style={styles.entryInput}
         multiline
-        value={entry}
-        onChangeText={setEntry}
+        value={summary}
+        onChangeText={setSummary}
         placeholder="Write your journal entry here..."
         placeholderTextColor="#666"
       />
@@ -45,7 +101,7 @@ const AddMemory = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E0FFFF', // Light cyan background as a placeholder
+    backgroundColor: '#F5F5F5',
   },
   navBar: {
     flexDirection: 'row',
@@ -57,7 +113,7 @@ const styles = StyleSheet.create({
   navButton: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000080', // Navy blue as a placeholder
+    color: '#007BFF',
   },
   titleInput: {
     fontSize: 18,
@@ -66,20 +122,27 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 20,
     borderRadius: 5,
-    backgroundColor: '#FFB6C1', // Light pink as a placeholder for title input
+    backgroundColor: '#E8E8E8',
   },
   photoButton: {
     marginHorizontal: 20,
     padding: 15,
-    backgroundColor: '#87CEEB', // Sky blue as a placeholder for button
+    backgroundColor: '#87CEEB',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
+    marginTop: 10,
   },
   photoButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  photo: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    margin: 10,
   },
   entryInput: {
     fontSize: 16,
@@ -90,7 +153,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 200,
     textAlignVertical: 'top',
-    backgroundColor: '#FFB6C1', // Light pink as a placeholder for journal entry input
+    backgroundColor: '#E8E8E8',
   },
 });
 

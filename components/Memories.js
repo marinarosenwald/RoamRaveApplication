@@ -1,16 +1,12 @@
 import React from 'react';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-const memories = [
-  { id: 1, name: 'Elliott’s Oyster House', date: '8/4/23', entry: 'Tried some local oysters and crab...' },
-  { id: 2, name: 'Seattle Art Museum', date: '8/7/23', entry: 'Visited the art museum and enjoyed the exhibits...' },
-];
+import memoriesData from './MemoriesData.json';  // Assuming you have imported your JSON data here
 
 const MemoryRow = ({ item }) => (
   <View style={styles.row}>
-    <Text style={styles.name}>{item.name} ({item.date})</Text>
-    <Text style={styles.entry}>{item.entry}</Text>
+    <Text style={styles.title}>{item.title}</Text>
+    <Text style={styles.summary}>{item.summary}</Text>
   </View>
 );
 
@@ -20,7 +16,7 @@ const Memories = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={memories}
+        data={memoriesData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <MemoryRow item={item} />}
       />
@@ -28,7 +24,7 @@ const Memories = () => {
         style={styles.addButton} 
         onPress={() => navigation.navigate('AddMemory')}
       >
-        <Text style={styles.addButtonText}>+</Text>
+        <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,10 +33,10 @@ const Memories = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#B0E0E6', // Light blue background
+    backgroundColor: '#F5F5F5',
   },
   row: {
-    backgroundColor: '#FFC0CB', // Pink background for each memory
+    backgroundColor: '#FFC0CB',
     borderRadius: 10,
     padding: 20,
     marginVertical: 8,
@@ -51,14 +47,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
   },
-  name: {
+  title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'black', // Ensuring text is black for high contrast
+    color: 'black',
   },
-  entry: {
+  summary: {
     fontSize: 16,
-    color: 'black', // Ensuring text is black for readability
+    color: 'black',
   },
   addButton: {
     position: 'absolute',
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
