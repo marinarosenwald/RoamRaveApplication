@@ -1,76 +1,86 @@
-// ContentView.js
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import ActivitiesContext from '../ActivitiesContext';
+import ActivitiesRow from './ActivitiesRow';
+import MapView, { Marker } from 'react-native-maps';
 
-import { View, Text, TouchableOpacity, Image, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+const ContentView = () => {
+  const { activities } = useContext(ActivitiesContext);
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { city, lat, long } = route.params;
+  const skyBlue = '#76d6ff';
+  const babyPink = '#ffbbe0';
 
-const ContentView = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor="#ADD8E6" barStyle="dark-content" />
-      <View style={styles.header}>
-        <Image source={require('../assets/VertNavIcon.png')} style={styles.menuIcon} />
+    <View style={styles.container}>
+      <Text style={styles.title}>{city}</Text>
+      <MapView
+        style={styles.map}
+        region={{
+          latitude: lat,
+          longitude: long,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        }}
+      >
+        <Marker coordinate={{ latitude: lat, longitude: long }} />
+      </MapView>
+      <FlatList
+        data={activities.filter(activity => activity.city === city)}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('ActivityDetails', { activity: item })}>
+            <ActivitiesRow activity={item} />
+          </TouchableOpacity>
+        )}
+        contentContainerStyle={styles.list}
+      />
+      <View style={styles.navigationHeader}>
+        <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+          <Image source={require('../assets/NavIcon.png')} style={styles.navIcon} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>RoamRave</Text>
       </View>
-      <View style={styles.container}>
-        <TouchableOpacity style={[styles.button, styles.selectedButton]} onPress={() => navigation.navigate('Map')}>
-          <Text style={styles.buttonText}>DOWNTOWN SEATTLE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Suggestions')}>
-          <Text style={styles.buttonText}>SUGGESTIONS</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Form')}>
-    <Text style={styles.buttonText}>FORMS</Text>
-</TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Favorites')}>
-          <Text style={styles.buttonText}>FAVORITES</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-  style={styles.button}
-  onPress={() => navigation.navigate('Memories')} // Make sure 'Memories' matches the name given in the Stack Navigator
->
-  <Text style={styles.buttonText}>MEMORIES</Text>
-</TouchableOpacity>
-      </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#FFF',
-  },
-  header: {
-    height: 60, 
-    backgroundColor: '#ADD8E6',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-  },
-  menuIcon: {
-    width: 50, 
-    height: 50,
-    resizeMode: 'contain',
-  },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
   },
-  button: {
-    backgroundColor: '#ADD8E6',
-    paddingVertical: 15,
-    width: '80%',
+  title: {
+    fontSize: 32,
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+  map: {
+    height: 350,
+    marginBottom: 20,
+  },
+  list: {
+    backgroundColor: '#76d6ff',
+    padding: 10,
     borderRadius: 10,
-    marginVertical: 8,
+  },
+  navigationHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 20,
   },
-  selectedButton: {
-    backgroundColor: '#FFC0CB',
+  navIcon: {
+    width: 80,
+    height: 80,
   },
-  buttonText: {
-    color: '#00008B',
-    fontSize: 18,
+  headerTitle: {
+    color: 'black',
+    fontSize: 24,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 

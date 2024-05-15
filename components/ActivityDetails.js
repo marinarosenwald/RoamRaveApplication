@@ -1,48 +1,95 @@
-// components/ActivityDetails.js
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import CloseMapView from './CloseMapView';
+import ActivitiesContext from '../ActivitiesContext';
 
-const ActivityDetails = ({ route, navigation }) => {
-  const { activity } = route.params;
+const ActivityDetails = () => {
+    const route = useRoute();
+    const { activity } = route.params;
+    const { toggleFavorite } = useContext(ActivitiesContext);
+    const [isFavorite, setIsFavorite] = useState(activity.isFavorite);
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{activity.name}</Text>
-      <Text style={styles.description}>Elliott’s Oyster House is a must-try place for those of you interested in locally sourced oysters. It is located on the water in Puget Sound and has a great photo area behind the restaurant where you can get photos with the Great Wheel and the water.</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-        <Text style={styles.backButtonText}>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    const skyBlue = '#76d6ff';
+    const babyPink = '#ffbbe0';
+
+    const handleToggleFavorite = () => {
+        toggleFavorite(activity);
+        setIsFavorite(!isFavorite);
+    };
+
+    return (
+        <ScrollView style={styles.container}>
+            <View style={styles.header}>
+                <View style={styles.headerText}>
+                    <Text style={styles.title}>{activity.name}</Text>
+                    <Text style={styles.subtitle}>{activity.city}</Text>
+                </View>
+                <TouchableOpacity onPress={handleToggleFavorite}>
+                    <Image
+                        source={isFavorite ? require('../assets/FilledHeart.png') : require('../assets/EmptyHeart.png')}
+                        style={styles.heartIcon}
+                    />
+                </TouchableOpacity>
+            </View>
+            <CloseMapView coordinate={activity.locationCoordinate} />
+            <View style={styles.detailsContainer}>
+                <View style={[styles.categoryContainer, { backgroundColor: '#ffbbe0' }]}>
+                    <Text style={styles.category}>{activity.category}</Text>
+                </View>
+                <Text style={[styles.description, { backgroundColor:  '#ffbbe0' }]}>{activity.description}</Text>
+            </View>
+        </ScrollView>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 20,
-  },
-  backButton: {
-    padding: 15,
-    backgroundColor: '#007bff',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  backButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        padding: 10,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+    },
+    headerText: {
+        flex: 1,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+    },
+    subtitle: {
+        fontSize: 18,
+        color: '#666',
+    },
+    heartIcon: {
+        width: 30,
+        height: 30,
+    },
+    detailsContainer: {
+        padding: 10,
+    },
+    categoryContainer: {
+        padding: 10,
+        borderRadius: 10,
+        marginBottom: 10,
+        alignItems: 'center',
+    },
+    category: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    description: {
+        padding: 10,
+        borderRadius: 10,
+        fontSize: 16,
+    },
 });
 
 export default ActivityDetails;

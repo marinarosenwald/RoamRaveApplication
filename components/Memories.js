@@ -1,31 +1,82 @@
-import React from 'react';
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import memoriesData from './MemoriesData.json';  // Assuming you have imported your JSON data here
-
-const MemoryRow = ({ item }) => (
-  <View style={styles.row}>
-    <Text style={styles.title}>{item.title}</Text>
-    <Text style={styles.summary}>{item.summary}</Text>
-  </View>
-);
+import Memory from './Memory';
 
 const Memories = () => {
+  const [memories, setMemories] = useState([]);
   const navigation = useNavigation();
+  const skyBlue = '#76d6ff';
+  const babyPink = '#ffbbe0';
+
+  useEffect(() => {
+    loadMemories();
+  }, []);
+
+  const loadMemories = async () => {
+    try {
+      const memoriesData = await AsyncStorage.getItem('MemoriesData');
+      if (memoriesData) {
+        const parsedMemories = JSON.parse(memoriesData).map(memory => new Memory(memory.id, memory.title, memory.summary, memory.photos));
+        setMemories(parsedMemories);
+      } else {
+        const initialMemories = await loadMemoriesFromJSON();
+        setMemories(initialMemories);
+        saveMemoriesToAsyncStorage(initialMemories);
+      }
+    } catch (error) {
+      console.error("Error loading memories:", error);
+    }
+  };
+
+  const loadMemoriesFromJSON = async () => {
+    try {
+      const response = await fetch('path/to/MemoriesData.json'); // Replace with the correct path to your JSON file
+      const data = await response.json();
+      return data.map(memory => new Memory(memory.id, memory.title, memory.summary, memory.photos));
+    } catch (error) {
+      console.error("Error loading memories from JSON:", error);
+      return [];
+    }
+  };
+
+  const saveMemoriesToAsyncStorage = async (memories) => {
+    try {
+      await AsyncStorage.setItem('MemoriesData', JSON.stringify(memories));
+    } catch (error) {
+      console.error("Error saving memories:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
+      <View style={styles.navBar}>
+        <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+          <Image source={require('../assets/NavIcon.png')} style={styles.navIcon} />
+        </TouchableOpacity>
+        <Text style={styles.navTitle}>RoamRave</Text>
+      </View>
+      <View style={styles.header}>
+        <Text style={styles.title}>Memories</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('AddMemory')}>
+          <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/000000/plus-math.png' }} style={styles.plusIcon} />
+        </TouchableOpacity>
+      </View>
       <FlatList
-        data={memoriesData}
+        data={memories}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <MemoryRow item={item} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity 
+            style={styles.memoryItem} 
+            onPress={() => navigation.navigate('MemoryDetail', { memory: item })}
+          >
+            <Text style={styles.memoryTitle}>{item.title}</Text>
+            <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/000000/chevron-right.png' }} style={styles.chevronIcon} />
+          </TouchableOpacity>
+        )}
+        contentContainerStyle={styles.list}
       />
-      <TouchableOpacity 
-        style={styles.addButton} 
-        onPress={() => navigation.navigate('AddMemory')}
-      >
-        <Text style={styles.addButtonText}>Add</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -33,45 +84,59 @@ const Memories = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#fff',
   },
-  row: {
-    backgroundColor: '#FFC0CB',
-    borderRadius: 10,
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 4,
+  navBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#76d6ff',
+    paddingVertical: 10,
+  },
+  navIcon: {
+    width: 30,
+    height: 30,
+    marginLeft: 20,
+  },
+  navTitle: {
+    flex: 1,
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: 'center',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 25,
+    marginHorizontal: 20,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'black',
+    fontSize: 32,
   },
-  summary: {
-    fontSize: 16,
-    color: 'black',
+  plusIcon: {
+    width: 30,
+    height: 30,
   },
-  addButton: {
-    position: 'absolute',
-    right: 30,
-    bottom: 30,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#007bff',
-    justifyContent: 'center',
+  memoryItem: {
+    backgroundColor: '#ffbbe0',
+    padding: 15,
+    borderRadius: 10,
+    marginHorizontal: 20,
+    marginVertical: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    elevation: 8,
   },
-  addButtonText: {
-    color: 'white',
+  memoryTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+  },
+  chevronIcon: {
+    width: 30,
+    height: 30,
+  },
+  list: {
+    paddingBottom: 20,
   },
 });
 

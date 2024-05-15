@@ -1,9 +1,8 @@
-// App.js
 import React from 'react';
-import AppNavigator from './AppNavigator';
+import RoamRaveApp from './RoamRaveApp';
 
 const App = () => {
-  return <AppNavigator />;
+  return <RoamRaveApp />;
 };
 
 export default App;
