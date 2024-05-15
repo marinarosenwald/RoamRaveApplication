@@ -32,10 +32,12 @@ const Favorites = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
           <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
         </TouchableOpacity>
+      
+       
+   
         <Text style={styles.title}>Favorites</Text>
         <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff0000/like.png' }} style={styles.heartIcon} />
-        <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff0000/like.png' }} style={styles.heartIcon} />
-      </View>
+        </View>
       <FlatList
         data={activities}
         keyExtractor={(item) => item.id.toString()}
