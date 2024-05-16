@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Menu = () => {
     const navigation = useNavigation();
     const [selectedCity, setSelectedCity] = useState('Downtown Seattle');
+    const [modalVisible, setModalVisible] = useState(false);
+    const cities = ['Downtown Seattle', 'Bellevue', 'Redmond'];
+    const skyBlue = '#76d6ff';
+    const babyPink = '#ffbbe0';
+
+    const handleCitySelect = (city) => {
+        setSelectedCity(city);
+        setModalVisible(false);
+    };
 
     return (
         <View style={styles.container}>
@@ -15,18 +23,32 @@ const Menu = () => {
                 </TouchableOpacity>
                 <Text style={styles.title}>RoamRave</Text>
             </View>
-            <View style={styles.pickerContainer}>
-                <Picker
-                    selectedValue={selectedCity}
-                    onValueChange={(itemValue) => setSelectedCity(itemValue)}
-                    style={styles.picker}
-                    dropdownIconColor="#000" // Changes the dropdown arrow color
-                >
-                    <Picker.Item label="Downtown Seattle" value="Downtown Seattle" />
-                    <Picker.Item label="Bellevue" value="Bellevue" />
-                    <Picker.Item label="Redmond" value="Redmond" />
-                </Picker>
-            </View>
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.pickerContainer}>
+                <Text style={styles.pickerText}>{selectedCity}</Text>
+            </TouchableOpacity>
+            <Modal
+                visible={modalVisible}
+                animationType="slide"
+                transparent={true}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <FlatList
+                            data={cities}
+                            keyExtractor={(item) => item}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity
+                                    style={styles.modalItem}
+                                    onPress={() => handleCitySelect(item)}
+                                >
+                                    <Text style={styles.modalItemText}>{item}</Text>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    </View>
+                </View>
+            </Modal>
             <TouchableOpacity onPress={() => navigation.navigate('Suggestions', { city: selectedCity })} style={styles.button}>
                 <Text style={styles.buttonText}>Suggestions</Text>
             </TouchableOpacity>
@@ -43,6 +65,9 @@ const Menu = () => {
     );
 };
 
+const skyBlue = '#76d6ff';
+const babyPink = '#ffbbe0';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -54,19 +79,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#76d6ff', // skyBlue color
+        backgroundColor: skyBlue,
         padding: 10,
         width: '100%',
         position: 'relative',
     },
     menuIcon: {
         width: 30,
-        height: 30,      
-        left: -100,        
+        height: 30,
+      //  position: 'absolute',
+        left: -100,
         transform: [{ rotate: '90deg' }],
     },
-
-    
     title: {
         fontSize: 28,
         fontWeight: 'bold',
@@ -74,22 +98,31 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         width: 300,
-        backgroundColor: '#ffbbe0',
+        height: 70,
+        backgroundColor: babyPink,
         borderRadius: 10,
         marginVertical: 20,
         justifyContent: 'center',
         alignItems: 'center',
     },
+    pickerText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
+    },
     picker: {
         width: '100%',
         height: 50,
         color: '#000',
-        backgroundColor: 'transparent', // Makes the picker background transparent
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        opacity: 0, // Hide the default picker, we use the text to display the value
     },
     button: {
         width: 300,
         height: 70,
-        backgroundColor: '#76d6ff',
+        backgroundColor: skyBlue,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
@@ -99,6 +132,27 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    modalContent: {
+        width: 300,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 20,
+    },
+    modalItem: {
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+    },
+    modalItemText: {
+        fontSize: 18,
+        color: 'black',
     },
 });
 
