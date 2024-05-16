@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 const FormsView = () => {
   const navigation = useNavigation();
   const skyBlue = '#76d6ff';
-  const Pink = '#ffbbe0';
+  const babyPink = '#ffbbe0';
 
   return (
     <View style={styles.container}>
@@ -13,18 +13,21 @@ const FormsView = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
           <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
         </TouchableOpacity>
-        <Text style={styles.title}>Forms</Text>
+        <Text style={styles.headerTitle}></Text>
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>FORMS</Text>
       </View>
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.spacer} />
         <View style={styles.innerContainer}>
           <TouchableOpacity
-            style={[styles.linkContainer, { backgroundColor: '#76d6ff' }]}
+            style={[styles.linkContainer, { backgroundColor: skyBlue }]}
             onPress={() => Linking.openURL("https://docs.google.com/forms/d/e/1FAIpQLSfef7lCeuM_tIP24sY9Hw2oLF-35ELGNfP9BORXrafSGBMuqg/viewform?usp=sf_link")}
           >
             <Text style={styles.linkText}>Suggest Your City</Text>
           </TouchableOpacity>
-          <View style={[styles.textContainer, { backgroundColor: Pink }]}>
+          <View style={[styles.textContainer, { backgroundColor: babyPink }]}>
             <Text style={styles.text}>
               Fill out the form above with information about your favorite places in your city and our travel experts will review your suggestions!!!
             </Text>
@@ -33,12 +36,12 @@ const FormsView = () => {
         <View style={styles.spacerLarge} />
         <View style={styles.innerContainer}>
           <TouchableOpacity
-            style={[styles.linkContainer, { backgroundColor: '#76d6ff' }]}
+            style={[styles.linkContainer, { backgroundColor: skyBlue }]}
             onPress={() => Linking.openURL("https://docs.google.com/forms/d/e/1FAIpQLSfxP0GzA1x7GnxBsIIL8p7QwmpWlYkxxJSlmTNiumEAlGRHZg/viewform?usp=sf_link")}
           >
             <Text style={styles.linkText}>Review Our App</Text>
           </TouchableOpacity>
-          <View style={[styles.textContainer, { backgroundColor:  '#ffbbe0' }]}>
+          <View style={[styles.textContainer, { backgroundColor: babyPink }]}>
             <Text style={styles.text}>
               Fill out the form above with your thoughts on this App. include your like, dislikes, if anything seems broken, or anything else you want to share with our development team!
             </Text>
@@ -57,19 +60,32 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#76d6ff',
+    backgroundColor: '#76d6ff', // skyBlue color
     padding: 10,
+    width: '100%',
   },
   menuIcon: {
     width: 30,
     height: 30,
   },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
+    marginLeft: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: 'black',
     textAlign: 'center',
+    color: 'black',
   },
   scrollContainer: {
     flex: 1,
@@ -101,23 +117,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    textAlign: 'center',
-  },
-  navigationBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  navIcon: {
-    width: 80,
-    height: 80,
-    marginLeft: -10,
-  },
-  navTitle: {
-    flex: 1,
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 24,
     textAlign: 'center',
   },
 });

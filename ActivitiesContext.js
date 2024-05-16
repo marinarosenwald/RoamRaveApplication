@@ -1,17 +1,31 @@
-import React, { createContext, useState } from 'react';
-import activitiesData from './components/ActivitiesData.json'; // Ensure you have this file
+// ActivitiesContext.js
+import React, { createContext, useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
-    const [activities, setActivities] = useState(activitiesData);
+    const [activities, setActivities] = useState([]);
 
-    const toggleFavorite = (activity) => {
-        setActivities((prevActivities) =>
-            prevActivities.map((item) =>
-                item.id === activity.id ? { ...item, isFavorite: !item.isFavorite } : item
-            )
+    useEffect(() => {
+        loadActivities();
+    }, []);
+
+    const loadActivities = async () => {
+        try {
+            const data = require('./components/ActivitiesData.json');
+            setActivities(data);
+        } catch (error) {
+            console.error('Error loading activities:', error);
+        }
+    };
+
+    const toggleFavorite = async (activity) => {
+        const updatedActivities = activities.map((item) =>
+            item.id === activity.id ? { ...item, isFavorite: !item.isFavorite } : item
         );
+        setActivities(updatedActivities);
+        await AsyncStorage.setItem('ActivitiesData', JSON.stringify(updatedActivities));
     };
 
     return (

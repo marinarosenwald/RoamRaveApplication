@@ -32,12 +32,12 @@ const Favorites = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
           <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
         </TouchableOpacity>
-      
-       
-   
+        <Text style={styles.headerTitle}></Text>
+      </View>
+      <View style={styles.titleContainer}>
         <Text style={styles.title}>Favorites</Text>
         <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff0000/like.png' }} style={styles.heartIcon} />
-        </View>
+      </View>
       <FlatList
         data={activities}
         keyExtractor={(item) => item.id.toString()}
@@ -56,6 +56,9 @@ const Favorites = () => {
   );
 };
 
+const skyBlue = '#76d6ff';
+const babyPink = '#ffbbe0';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -64,18 +67,30 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#76d6ff',
+    backgroundColor: skyBlue,
     padding: 10,
-    paddingLeft: 20,
+    width: '100%',
   },
   menuIcon: {
     width: 30,
     height: 30,
-    marginRight: 10,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
+    marginLeft: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
   title: {
     flex: 1,
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'center',
@@ -86,7 +101,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   activityItem: {
-    backgroundColor: '#ffbbe0',
+    backgroundColor: babyPink,
     padding: 15,
     borderRadius: 10,
     flexDirection: 'row',

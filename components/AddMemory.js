@@ -33,7 +33,10 @@ const AddMemory = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
           <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Add Memory</Text>
+        <Text style={styles.headerTitle}></Text>
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Add Memory</Text>
         <TouchableOpacity onPress={saveMemory}>
           <Image source={{ uri: 'https://img.icons8.com/ios/50/000000/bookmark-ribbon.png' }} style={styles.saveIcon} />
         </TouchableOpacity>
@@ -59,6 +62,9 @@ const AddMemory = () => {
   );
 };
 
+const skyBlue = '#76d6ff';
+const babyPink = '#ffbbe0';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -67,15 +73,28 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#76d6ff',
+    backgroundColor: skyBlue,
     padding: 10,
+    width: '100%',
   },
   menuIcon: {
     width: 30,
     height: 30,
-    marginRight: 10,
   },
   headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
+    marginLeft: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  title: {
     flex: 1,
     fontSize: 28,
     fontWeight: 'bold',
@@ -93,7 +112,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     padding: 10,
-    backgroundColor: '#ffbbe0',
+    backgroundColor: babyPink,
     borderRadius: 10,
     marginBottom: 15,
     fontSize: 18,

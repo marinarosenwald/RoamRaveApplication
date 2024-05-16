@@ -1,16 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActivitiesContext from '../ActivitiesContext';
 
 const ActivityDetails = () => {
     const route = useRoute();
     const navigation = useNavigation();
     const { activity } = route.params;
-    const { toggleFavorite } = useContext(ActivitiesContext);
+    const { toggleFavorite, activities } = useContext(ActivitiesContext);
     const [isFavorite, setIsFavorite] = useState(activity.isFavorite);
+
+    useEffect(() => {
+        const updatedActivity = activities.find(item => item.id === activity.id);
+        if (updatedActivity) {
+            setIsFavorite(updatedActivity.isFavorite);
+        }
+    }, [activities]);
 
     const handleToggleFavorite = () => {
         toggleFavorite(activity);
