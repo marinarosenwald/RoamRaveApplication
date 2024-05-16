@@ -4,9 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 
 const Menu = () => {
     const navigation = useNavigation();
-    const [selectedCity, setSelectedCity] = useState('Downtown Seattle');
+    const [selectedCity, setSelectedCity] = useState({ name: 'Downtown Seattle', lat: 47.6062, long: -122.3321 });
     const [modalVisible, setModalVisible] = useState(false);
-    const cities = ['Downtown Seattle', 'Bellevue', 'Redmond'];
+    const cities = [
+        { name: 'Downtown Seattle', lat: 47.6062, long: -122.3321 },
+        { name: 'Bellevue', lat: 47.6101, long: -122.2015 },
+        { name: 'Redmond', lat: 47.6731, long: -122.1215 },
+    ];
     const skyBlue = '#76d6ff';
     const babyPink = '#ffbbe0';
 
@@ -24,7 +28,7 @@ const Menu = () => {
                 <Text style={styles.title}>RoamRave</Text>
             </View>
             <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.pickerContainer}>
-                <Text style={styles.pickerText}>{selectedCity}</Text>
+                <Text style={styles.pickerText}>{selectedCity.name}</Text>
             </TouchableOpacity>
             <Modal
                 visible={modalVisible}
@@ -36,20 +40,27 @@ const Menu = () => {
                     <View style={styles.modalContent}>
                         <FlatList
                             data={cities}
-                            keyExtractor={(item) => item}
+                            keyExtractor={(item) => item.name}
                             renderItem={({ item }) => (
                                 <TouchableOpacity
                                     style={styles.modalItem}
                                     onPress={() => handleCitySelect(item)}
                                 >
-                                    <Text style={styles.modalItemText}>{item}</Text>
+                                    <Text style={styles.modalItemText}>{item.name}</Text>
                                 </TouchableOpacity>
                             )}
                         />
                     </View>
                 </View>
             </Modal>
-            <TouchableOpacity onPress={() => navigation.navigate('ContentView', { city: selectedCity })} style={styles.button}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('ContentView', {
+                    city: selectedCity.name,
+                    lat: selectedCity.lat,
+                    long: selectedCity.long,
+                })}
+                style={styles.button}
+            >
                 <Text style={styles.buttonText}>Suggestions</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('FormsView')} style={styles.button}>
