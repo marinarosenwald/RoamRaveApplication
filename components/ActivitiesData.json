@@ -1,31 +1,33 @@
 [
     {
         "name": "Elliott's Oyster House",
-        "category": "Resturant",
-        "city": "Downtown Seattle",
+        "category": "Restaurant",
+        "city": "Seattle",
         "state": "Washington",
         "id": 1001,
         "isFeatured": true,
         "isFavorite": false,
         "coordinates": {
-            "longitude": -122.34037,
-            "latitude": 47.6054
+            "longitude": -122.3411,
+            "latitude": 47.6098
         },
-        "description": "Suscipit inceptos est felis purus."
-    },{
+        "description": "Elliott's Oyster House is a renowned seafood restaurant located on the Seattle waterfront, offering a variety of fresh oysters and other seafood dishes."
+    },
+    {
         "name": "Seattle Art Museum",
         "category": "Museum",
-        "city": "Downtown Seattle",
+        "city": "Seattle",
         "state": "Washington",
         "id": 1002,
         "isFeatured": true,
         "isFavorite": true,
         "coordinates": {
-            "longitude": -122.33787,
-            "latitude": 47.60737
+            "longitude": -122.3358,
+            "latitude": 47.6075
         },
-        "description": "Suscipit inceptos est feli."
-    },{
+        "description": "Seattle Art Museum (SAM) is one of the premier art institutions in the Pacific Northwest, featuring a diverse collection of artworks spanning various cultures and periods."
+    },
+    {
         "name": "Bellevue Art Museum",
         "category": "Museum",
         "city": "Bellevue",
@@ -34,23 +36,23 @@
         "isFeatured": true,
         "isFavorite": false,
         "coordinates": {
-            "longitude": -122.20133,
-            "latitude": 47.61533
+            "longitude": -122.2021,
+            "latitude": 47.6104
         },
-        "description": "Suscipit inceptos est f."
-    },{
+        "description": "Bellevue Art Museum (BAM) showcases contemporary art and craft in a variety of mediums, providing a platform for both established and emerging artists."
+    },
+    {
         "name": "Matador",
-        "category": "Resturant",
+        "category": "Restaurant",
         "city": "Redmond",
         "state": "Washington",
         "id": 1004,
         "isFeatured": true,
         "isFavorite": true,
         "coordinates": {
-            "longitude": -122.12306,
-            "latitude": 47.67327
+            "longitude": -122.1231,
+            "latitude": 47.6733
         },
-        "description": "Suscipit inceptos est felis purus aenean."
+        "description": "Matador is a vibrant Mexican restaurant and tequila bar located in the heart of Redmond, offering a menu inspired by traditional flavors with a modern twist."
     }
-    
 ]

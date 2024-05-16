@@ -15,7 +15,6 @@ const ContentView = () => {
     }, []);
 
     const loadActivities = () => {
-        // Load activities data from a local JSON file
         try {
             const data = require('./ActivitiesData.json');
             setActivities(data);
@@ -30,7 +29,7 @@ const ContentView = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
                     <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
                 </TouchableOpacity>
-                <Text style={styles.title}>RoamRave</Text>
+                <Text style={styles.headerTitle}></Text>
             </View>
             <Text style={styles.cityTitle}>{city}</Text>
             <MapView
@@ -73,33 +72,30 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: skyBlue,
         padding: 10,
         width: '100%',
-        position: 'relative',
     },
     menuIcon: {
         width: 30,
         height: 30,
-      //  position: 'absolute',
-        left: -100,
     },
-    title: {
-        fontSize: 28,
+    headerTitle: {
+        fontSize: 24,
         fontWeight: 'bold',
         color: 'black',
+        marginLeft: 10,
     },
     cityTitle: {
         fontSize: 32,
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center',
-        marginVertical: 20,
+        marginVertical: 10,
     },
     map: {
-        height: 350,
-        marginVertical: 20,
+        height: 200,
+        marginVertical: 10,
     },
     activityItem: {
         backgroundColor: skyBlue,

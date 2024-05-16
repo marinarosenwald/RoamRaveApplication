@@ -1,17 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { useRoute } from '@react-navigation/native';
-import CloseMapView from './CloseMapView';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import MapView, { Marker } from 'react-native-maps';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import ActivitiesContext from '../ActivitiesContext';
 
 const ActivityDetails = () => {
     const route = useRoute();
+    const navigation = useNavigation();
     const { activity } = route.params;
     const { toggleFavorite } = useContext(ActivitiesContext);
     const [isFavorite, setIsFavorite] = useState(activity.isFavorite);
-
-    const skyBlue = '#76d6ff';
-    const babyPink = '#ffbbe0';
 
     const handleToggleFavorite = () => {
         toggleFavorite(activity);
@@ -19,76 +18,105 @@ const ActivityDetails = () => {
     };
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.header}>
-                <View style={styles.headerText}>
-                    <Text style={styles.title}>{activity.name}</Text>
-                    <Text style={styles.subtitle}>{activity.city}</Text>
-                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+                    <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
+                </TouchableOpacity>
+                <Text style={styles.headerTitle}></Text>
+            </View>
+            <View style={styles.titleContainer}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Ionicons name="chevron-back" size={30} color="black" />
+                </TouchableOpacity>
+                <Text style={styles.title}>{activity.name}</Text>
                 <TouchableOpacity onPress={handleToggleFavorite}>
-                    <Image
-                        source={isFavorite ? require('../assets/FilledHeart.png') : require('../assets/EmptyHeart.png')}
-                        style={styles.heartIcon}
-                    />
+                    <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={30} color={isFavorite ? "red" : "black"} />
                 </TouchableOpacity>
             </View>
-            <CloseMapView coordinate={activity.locationCoordinate} />
+            <MapView
+                style={styles.map}
+                initialRegion={{
+                    latitude: activity.coordinates.latitude,
+                    longitude: activity.coordinates.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
+            >
+                <Marker coordinate={activity.coordinates} />
+            </MapView>
             <View style={styles.detailsContainer}>
-                <View style={[styles.categoryContainer, { backgroundColor: '#ffbbe0' }]}>
-                    <Text style={styles.category}>{activity.category}</Text>
+                <View style={styles.categoryContainer}>
+                    <Text style={styles.category}>{activity.category.toUpperCase()}</Text>
                 </View>
-                <Text style={[styles.description, { backgroundColor:  '#ffbbe0' }]}>{activity.description}</Text>
+                <Text style={styles.description}>{activity.description.toUpperCase()}</Text>
             </View>
-        </ScrollView>
+        </View>
     );
 };
+
+const skyBlue = '#76d6ff';
+const babyPink = '#ffbbe0';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        padding: 10,
     },
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
+        backgroundColor: skyBlue,
+        padding: 10,
+        width: '100%',
     },
-    headerText: {
-        flex: 1,
+    menuIcon: {
+        width: 30,
+        height: 30,
+    },
+    headerTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'black',
+        marginLeft: 10,
+    },
+    titleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
+        textAlign: 'center',
+        flex: 1,
     },
-    subtitle: {
-        fontSize: 18,
-        color: '#666',
-    },
-    heartIcon: {
-        width: 30,
-        height: 30,
+    map: {
+        height: 200,
+        marginVertical: 10,
     },
     detailsContainer: {
         padding: 10,
     },
     categoryContainer: {
+        backgroundColor: babyPink,
         padding: 10,
         borderRadius: 10,
-        marginBottom: 10,
         alignItems: 'center',
+        marginBottom: 10,
     },
     category: {
         fontSize: 20,
         fontWeight: 'bold',
     },
     description: {
+        backgroundColor: babyPink,
         padding: 10,
         borderRadius: 10,
         fontSize: 16,
+        textAlign: 'center',
     },
 });
 

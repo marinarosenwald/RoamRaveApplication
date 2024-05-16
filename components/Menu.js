@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 
 const Menu = () => {
     const navigation = useNavigation();
-    const [selectedCity, setSelectedCity] = useState({ name: 'Downtown Seattle', lat: 47.6062, long: -122.3321 });
+    const [selectedCity, setSelectedCity] = useState({ name: 'Seattle', lat: 47.6062, long: -122.3321 });
     const [modalVisible, setModalVisible] = useState(false);
     const cities = [
-        { name: 'Downtown Seattle', lat: 47.6062, long: -122.3321 },
+        { name: 'Seattle', lat: 47.6062, long: -122.3321 },
         { name: 'Bellevue', lat: 47.6101, long: -122.2015 },
         { name: 'Redmond', lat: 47.6731, long: -122.1215 },
     ];
