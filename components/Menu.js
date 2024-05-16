@@ -49,7 +49,7 @@ const Menu = () => {
                     </View>
                 </View>
             </Modal>
-            <TouchableOpacity onPress={() => navigation.navigate('Suggestions', { city: selectedCity })} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate('ContentView', { city: selectedCity })} style={styles.button}>
                 <Text style={styles.buttonText}>Suggestions</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('FormsView')} style={styles.button}>
