@@ -9,17 +9,18 @@ const Menu = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.navBar}>
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                    <Image source={require('../assets/VertNavIcon.png')} style={styles.navIcon} />
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+                    <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
                 </TouchableOpacity>
-                <Text style={styles.navTitle}>RoamRave</Text>
+                <Text style={styles.title}>RoamRave</Text>
             </View>
             <View style={styles.pickerContainer}>
                 <Picker
                     selectedValue={selectedCity}
                     onValueChange={(itemValue) => setSelectedCity(itemValue)}
                     style={styles.picker}
+                    dropdownIconColor="#000" // Changes the dropdown arrow color
                 >
                     <Picker.Item label="Downtown Seattle" value="Downtown Seattle" />
                     <Picker.Item label="Bellevue" value="Bellevue" />
@@ -46,30 +47,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
         backgroundColor: '#fff',
         paddingTop: 40,
     },
-    navBar: {
-        width: '100%',
-        height: 100,
-        backgroundColor: '#76d6ff',
-        justifyContent: 'center',
-        alignItems: 'center',
+    header: {
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#76d6ff', // skyBlue color
+        padding: 10,
+        width: '100%',
+        position: 'relative',
     },
-    navIcon: {
-        width: 40,
-        height: 40,
-        marginRight: 10,
+    menuIcon: {
+        width: 30,
+        height: 30,      
+        left: -100,        
+        transform: [{ rotate: '90deg' }],
     },
-    navTitle: {
-        fontSize: 30,
+
+    
+    title: {
+        fontSize: 28,
         fontWeight: 'bold',
-        color: '#000',
-        flex: 1,
-        textAlign: 'center',
-        marginRight: 50,
+        color: 'black',
     },
     pickerContainer: {
         width: 300,
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         color: '#000',
+        backgroundColor: 'transparent', // Makes the picker background transparent
     },
     button: {
         width: 300,
