@@ -16,7 +16,7 @@ const FormsView = () => {
         <Text style={styles.headerTitle}></Text>
       </View>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>FORMS</Text>
+        <Text style={styles.title}>Forms</Text>
       </View>
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.spacer} />
@@ -78,8 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 2, // Reduce vertical padding
   },
   title: {
     fontSize: 28,
@@ -92,10 +91,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   spacer: {
-    height: 25,
+    height: -3, // Further reduced height
   },
   spacerLarge: {
-    height: 50,
+    height: 0.2,
   },
   innerContainer: {
     marginBottom: 20,
