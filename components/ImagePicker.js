@@ -1,82 +1,110 @@
-import React from 'react';
-import { Button, Image, View, Platform, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Button, Image, StyleSheet, ScrollView, Alert, TouchableOpacity, Text } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 const CustomImagePicker = ({ selectedImages, setSelectedImages }) => {
+  useEffect(() => {
+    (async () => {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission Denied', 'Sorry, we need camera and photo library permissions to make this work!');
+      }
+    })();
+  }, []);
 
-  const pickImage = async (sourceType) => {
-    let result;
-    if (sourceType === 'camera') {
-      result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-    } else {
-      result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
+  const pickImages = async () => {
+    if (selectedImages.length >= 10) {
+      Alert.alert('Limit Reached', 'You can only select up to 10 images.');
+      return;
     }
 
-    if (!result.cancelled) {
-      setSelectedImages([...selectedImages, result.uri]);
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: true, // Enable multiple selection
+      quality: 1,
+    });
+
+    if (!result.cancelled && result.assets) {
+      console.log('Selected images:', result.assets);
+      const newImages = result.assets.map(asset => asset.uri);
+      const totalImages = [...selectedImages, ...newImages];
+      if (totalImages.length > 10) {
+        Alert.alert('Limit Reached', 'You can only select up to 10 images.');
+        setSelectedImages(totalImages.slice(0, 10));
+      } else {
+        setSelectedImages(totalImages);
+      }
     }
   };
 
+  const takePhoto = async () => {
+    if (selectedImages.length >= 10) {
+      Alert.alert('Limit Reached', 'You can only select up to 10 images.');
+      return;
+    }
+
+    let result = await ImagePicker.launchCameraAsync({
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      console.log('Photo taken:', result.uri);
+      const totalImages = [...selectedImages, result.uri];
+      if (totalImages.length > 10) {
+        Alert.alert('Limit Reached', 'You can only select up to 10 images.');
+        setSelectedImages(totalImages.slice(0, 10));
+      } else {
+        setSelectedImages(totalImages);
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log('Selected Images:', selectedImages);
+  }, [selectedImages]);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={() => pickImage('library')}>
-        <Text style={styles.buttonText}>Select from Library</Text>
+      <ScrollView horizontal style={styles.imageContainer}>
+        {selectedImages.map((uri, index) => (
+          <Image key={index} source={{ uri }} style={styles.image} />
+        ))}
+      </ScrollView>
+      <TouchableOpacity style={styles.button} onPress={pickImages}>
+        <Text style={styles.buttonText}>Pick images from gallery</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => pickImage('camera')}>
-        <Text style={styles.buttonText}>Take Photo</Text>
+      <TouchableOpacity style={styles.button} onPress={takePhoto}>
+        <Text style={styles.buttonText}>Take a photo</Text>
       </TouchableOpacity>
-      {selectedImages.length > 0 && (
-        <View style={styles.imagesContainer}>
-          {selectedImages.map((imageUri, index) => (
-            <Image key={index} source={{ uri: imageUri }} style={styles.image} />
-          ))}
-        </View>
-      )}
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    marginVertical: 10,
   },
   button: {
     backgroundColor: '#76d6ff',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginBottom: 15,
-    width: '80%',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginVertical: 10,
   },
   buttonText: {
-    color: '#000',
-    fontSize: 18,
+    color: '#000000',
     fontWeight: 'bold',
+    
+    fontSize: 16,
   },
-  imagesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginTop: 20,
+  imageContainer: {
+    marginTop: 10,
   },
   image: {
     width: 100,
     height: 100,
     margin: 5,
-    borderRadius: 10,
   },
 });
 

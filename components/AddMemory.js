@@ -10,8 +10,6 @@ const AddMemory = () => {
   const [summary, setSummary] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
   const navigation = useNavigation();
-  const skyBlue = '#76d6ff';
-  const babyPink = '#ffbbe0';
 
   const saveMemory = async () => {
     try {
@@ -62,9 +60,6 @@ const AddMemory = () => {
   );
 };
 
-const skyBlue = '#76d6ff';
-const babyPink = '#ffbbe0';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -73,7 +68,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: skyBlue,
+    backgroundColor: '#76d6ff', // skyBlue color
     padding: 10,
     width: '100%',
   },
@@ -112,7 +107,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     padding: 10,
-    backgroundColor: babyPink,
+    backgroundColor: '#ffbbe0', // babyPink color
     borderRadius: 10,
     marginBottom: 15,
     fontSize: 18,
@@ -122,6 +117,11 @@ const styles = StyleSheet.create({
   },
   summaryInput: {
     height: 200,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 5,
   },
 });
 
