@@ -1,15 +1,29 @@
 import React from 'react';
-import { View, Text, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+const { width } = Dimensions.get('window');
 
 const MemoryDetail = ({ route }) => {
   const { memory } = route.params;
-  const skyBlue = '#76d6ff';
-  const Pink = '#ffbbe0';
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <View style={styles.spacer} />
-      <Text style={styles.title}>{memory.title}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+          <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Memories</Text>
+        <View style={styles.headerPlaceholder} />
+      </View>
+      <View style={styles.titleContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="chevron-back" size={30} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.title}>{memory.title}</Text>
+      </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollView}>
         <View style={styles.imageContainer}>
           {memory.photos.map((photoURLString, index) => (
@@ -18,9 +32,7 @@ const MemoryDetail = ({ route }) => {
                 source={{ uri: photoURLString }}
                 style={styles.image}
                 onError={() => {
-                  this.setState({
-                    brokenImage: true
-                  });
+                  console.log('Failed to load image at:', photoURLString);
                 }}
               />
             </View>
@@ -30,47 +42,88 @@ const MemoryDetail = ({ route }) => {
       <View style={styles.summaryContainer}>
         <Text style={styles.summary}>{memory.summary}</Text>
       </View>
-      <View style={styles.spacer} />
     </View>
   );
 };
 
+const skyBlue = '#76d6ff';
+const babyPink = '#ffbbe0';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#fff',
   },
-  spacer: {
-    height: 25,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: skyBlue,
+    padding: 10,
+    width: '100%',
+  },
+  menuIcon: {
+    width: 30,
+    height: 30,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
+    flex: 1,
+  },
+  headerPlaceholder: {
+    width: 30,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  backButton: {
+    marginRight: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginVertical: 15,
+    textAlign: 'center',
+    flex: 1,
   },
   scrollView: {
-    marginBottom: 15,
+    marginBottom: 10,
   },
   imageContainer: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   imageWrapper: {
-    marginRight: 10,
+    margin: 5,
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: '#eaeaea',
+    width: width * 0.45,
+    height: width * 0.45,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: '100%',
+    height: '100%',
     borderRadius: 10,
   },
   summaryContainer: {
-    backgroundColor: '#ffbbe0',
-    padding: 15,
+    backgroundColor: babyPink,
+    padding: 20,
     borderRadius: 10,
+    marginHorizontal: 20,
+    marginBottom: 20,
+    alignItems: 'center',
   },
   summary: {
     fontSize: 16,
-    color: 'black',
+    color: '#333',
+    lineHeight: 22,
+    textAlign: 'center',
   },
 });
 
