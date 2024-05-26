@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, Alert, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 
 const Memories = () => {
@@ -9,10 +9,6 @@ const Memories = () => {
   const navigation = useNavigation();
   const skyBlue = '#76d6ff';
   const babyPink = '#ffbbe0';
-
-  useEffect(() => {
-    loadMemories();
-  }, []);
 
   const loadMemories = async () => {
     try {
@@ -25,6 +21,16 @@ const Memories = () => {
       console.error("Error loading memories:", error);
     }
   };
+
+  useEffect(() => {
+    loadMemories();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadMemories();
+    }, [])
+  );
 
   const deleteMemory = async (id) => {
     Alert.alert(
