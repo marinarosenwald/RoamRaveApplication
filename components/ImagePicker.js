@@ -100,12 +100,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginVertical: 10,
-    width: '80%',
+    width: '100%',
+
+
     alignItems: 'center',
   },
   buttonText: {
-    color: '#ffffff',
-    fontSize: 16,
+    color: '#000000',
+    fontSize: 20,
   },
   imageContainer: {
     marginTop: 10,
