@@ -12,6 +12,11 @@ const AddMemory = () => {
   const navigation = useNavigation();
 
   const saveMemory = async () => {
+    if (!title.trim() || !summary.trim() || selectedImages.length === 0) {
+      Alert.alert("All fields are required", "Please add a title, summary, and at least one image.");
+      return;
+    }
+
     try {
       const memoriesData = await AsyncStorage.getItem('MemoriesData');
       let memories = memoriesData ? JSON.parse(memoriesData) : [];

@@ -93,13 +93,15 @@ const CustomImagePicker = ({ selectedImages, setSelectedImages }) => {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
+    alignItems: 'center', // Align buttons in the center
   },
   button: {
-    backgroundColor: '#841584',
+    backgroundColor: '#76d6ff', // skyBlue color
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 20,
     marginVertical: 10,
+    width: '80%',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#ffffff',
