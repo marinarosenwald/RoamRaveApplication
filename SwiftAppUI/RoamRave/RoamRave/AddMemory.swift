@@ -13,8 +13,8 @@ struct AddMemory: View {
     @State private var title = ""
     @State private var summary = ""
     @State private var selectedImages: [UIImage] = []
-    @State private var showImagePicker = false
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var showPhotoLibraryPicker = false
+    @State private var showCameraPicker = false
     @State private var summaryHeight: CGFloat = 200
     @State private var titleHeight: CGFloat = 50
     @Environment(\.presentationMode) var presentationMode
@@ -40,8 +40,7 @@ struct AddMemory: View {
                         }
                     
                     Button(action: {
-                        sourceType = .photoLibrary
-                        showImagePicker = true
+                        showPhotoLibraryPicker = true
                     }) {
                         Text("Select from Library")
                     }
@@ -52,8 +51,7 @@ struct AddMemory: View {
                     .cornerRadius(10)
                     
                     Button(action: {
-                        sourceType = .camera
-                        showImagePicker = true
+                        showCameraPicker = true
                     }) {
                         Text("Take Photo")
                     }
@@ -71,7 +69,7 @@ struct AddMemory: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 150, height: 150)
-                                        .padding(.leading, 10)
+                                        .padding(.leading, 20)
                                 }
                             }
                         }
@@ -95,8 +93,11 @@ struct AddMemory: View {
                         }
                     }
                 }
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(sourceType: sourceType, selectedImages: $selectedImages)
+                .sheet(isPresented: $showPhotoLibraryPicker) {
+                    PhotoLibraryPicker(selectedImages: $selectedImages)
+                }
+                .sheet(isPresented: $showCameraPicker) {
+                    CameraPicker(selectedImages: $selectedImages)
                 }
             }
         }
