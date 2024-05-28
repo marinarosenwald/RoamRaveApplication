@@ -10,14 +10,15 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    @StateObject private var viewModel = ActivitiesViewModel()
+    @EnvironmentObject var viewModel: ActivitiesViewModel
+    @State private var activities: [Activities] = []
     @Binding var city: String
     @Binding var lat: Double
     @Binding var long: Double
     
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
-    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0) //    254, 188, 255
-    
+    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
+
     var body: some View {
         NavigationView {
             VStack {
@@ -27,11 +28,9 @@ struct ContentView: View {
                 MapView(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long))
                     .frame(height: 350)
                 List {
-                    ForEach(viewModel.activities) { activity in
-                        if activity.city == city {
-                            NavigationLink(destination: ActivityDetails(activity: activity)) {
-                                ActivitiesRow(activity: activity)
-                            }
+                    ForEach(viewModel.activities.filter { $0.city == city }) { activity in
+                        NavigationLink(destination: ActivityDetails(activity: activity)) {
+                            Text(activity.name)
                         }
                     }
                     .listRowBackground(skyBlue)
@@ -42,11 +41,10 @@ struct ContentView: View {
                     }
                 }
                 .listStyle(PlainListStyle())
-
                 .navigationTitle("")
                 .navigationBarItems(leading:
                     HStack {
-                        NavigationLink{
+                        NavigationLink {
                             Menu()
                         } label: {
                             Image("NavIcon")
@@ -58,7 +56,7 @@ struct ContentView: View {
                         Spacer()
                         Text("RoamRave")
                             .foregroundColor(.black)
-                            .bold(true)
+                            .bold()
                             .padding(.leading, 30)
                     }
                 )
@@ -67,13 +65,17 @@ struct ContentView: View {
                 .toolbarBackground(.visible, for: .navigationBar)
             }
             .font(.custom("text", size: 30))
-            
+            Favorites()
         }
         .navigationBarBackButtonHidden(true)
-        .environmentObject(viewModel)
+        .onAppear {
+            viewModel.loadActivities()
+        }
+        
     }
 }
 
 #Preview {
     ContentView(city: .constant("Downtown Seattle"), lat: .constant(47.6062), long: .constant(-122.335))
+        .environmentObject(ActivitiesViewModel()) // You may need to provide a mock viewModel for preview
 }
