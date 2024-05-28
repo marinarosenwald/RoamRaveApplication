@@ -43,19 +43,35 @@ const CustomImagePicker = ({ selectedImages, setSelectedImages }) => {
       return;
     }
 
-    let result = await ImagePicker.launchCameraAsync({
-      quality: 1,
-    });
+    try {
+      let result = await ImagePicker.launchCameraAsync({
+        quality: 1,
+      });
 
-    if (!result.cancelled) {
-      console.log('Photo taken:', result.uri);
-      const totalImages = [...selectedImages, result.uri];
-      if (totalImages.length > 10) {
-        Alert.alert('Limit Reached', 'You can only select up to 10 images.');
-        setSelectedImages(totalImages.slice(0, 10));
-      } else {
-        setSelectedImages(totalImages);
+      console.log('Camera Result:', result);
+
+      if (!result.cancelled && result.assets) {
+        const newImages = result.assets.map(asset => asset.uri);
+        setSelectedImages(prevImages => {
+          const totalImages = [...prevImages, ...newImages];
+          if (totalImages.length > 10) {
+            Alert.alert('Limit Reached', 'You can only select up to 10 images.');
+            return totalImages.slice(0, 10);
+          }
+          return totalImages;
+        });
+      } else if (!result.cancelled && result.uri) {
+        setSelectedImages(prevImages => {
+          const totalImages = [...prevImages, result.uri];
+          if (totalImages.length > 10) {
+            Alert.alert('Limit Reached', 'You can only select up to 10 images.');
+            return totalImages.slice(0, 10);
+          }
+          return totalImages;
+        });
       }
+    } catch (error) {
+      console.error('Error taking photo:', error);
     }
   };
 
@@ -101,8 +117,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginVertical: 10,
     width: '100%',
-
-
     alignItems: 'center',
   },
   buttonText: {
