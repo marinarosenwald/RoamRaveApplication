@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, StyleSheet, Image, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, ScrollView, StyleSheet, Image, Alert, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Memory from './Memory'; // Import Memory model
@@ -31,20 +31,23 @@ const AddMemory = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
-          <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}></Text>
-      </View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Add Memory</Text>
-        <TouchableOpacity onPress={saveMemory}>
-          <Image source={{ uri: 'https://img.icons8.com/ios/50/000000/bookmark-ribbon.png' }} style={styles.saveIcon} />
-        </TouchableOpacity>
-      </View>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}
+    >
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+            <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/ff00ff/menu--v1.png' }} style={styles.menuIcon} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}></Text>
+        </View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Add Memory</Text>
+          <TouchableOpacity onPress={saveMemory}>
+            <Image source={{ uri: 'https://img.icons8.com/ios/50/000000/bookmark-ribbon.png' }} style={styles.saveIcon} />
+          </TouchableOpacity>
+        </View>
         <TextInput
           placeholder="Title of your entry..."
           value={title}
@@ -61,14 +64,15 @@ const AddMemory = () => {
           multiline
         />
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
+    padding: 20,
   },
   header: {
     flexDirection: 'row',
@@ -105,10 +109,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginLeft: 10,
-  },
-  contentContainer: {
-    padding: 20,
-
   },
   input: {
     width: '100%',
