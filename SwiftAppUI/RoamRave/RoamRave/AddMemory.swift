@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 struct AddMemory: View {
+    @Binding var memories: [Memory]
     @State private var title = ""
     @State private var summary = ""
     @State private var selectedImages: [UIImage] = []
@@ -18,19 +19,13 @@ struct AddMemory: View {
     @State private var titleHeight: CGFloat = 50
     @Environment(\.presentationMode) var presentationMode
 
-    
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
-    
-    func saveUserInput() {
-        UserDefaults.standard.set(title, forKey: "title")
-        UserDefaults.standard.set(summary, forKey: "summary")
-    }
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack{
+                VStack {
                     Spacer().frame(height: 25)
                     
                     TextField("Title of your entry... ", text: $title, axis: .vertical)
@@ -76,13 +71,11 @@ struct AddMemory: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 150, height: 150)
-                                        .padding(.leading, 20)
-                                    
+                                        .padding(.leading, 10)
                                 }
                             }
                         }
                     }
-                    
                     
                     TextField("Write your journal entry here...", text: $summary, axis: .vertical)
                         .foregroundColor(Color.black)
@@ -110,10 +103,10 @@ struct AddMemory: View {
     }
     
     func heightForText(text: String, font: UIFont, minH: CGFloat, width: CGFloat) -> CGFloat {
-            let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-            let boundingBox = text.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
-            return max(minH, boundingBox.height)
-        }
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = text.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
+        return max(minH, boundingBox.height)
+    }
     
     func saveMemory() {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -122,28 +115,22 @@ struct AddMemory: View {
         }
         let fileURL = documentsDirectory.appendingPathComponent("MemoriesData.json")
         
-        var memories: [Memory] = []
-        
-        do {
-            let data = try Data(contentsOf: fileURL)
-            memories = try JSONDecoder().decode([Memory].self, from: data)
-        } catch {
-            print("Error loading memories: \(error)")
-        }
-        var imageUrls: [String] = []
+        var imagePaths: [String] = []
         for image in selectedImages {
-            let imageUrl = documentsDirectory.appendingPathComponent(UUID().uuidString + ".jpg")
+            let imagePath = documentsDirectory.appendingPathComponent(UUID().uuidString + ".jpg")
             if let imageData = image.jpegData(compressionQuality: 0.8) {
                 do {
-                    try imageData.write(to: imageUrl)
-                    imageUrls.append(imageUrl.absoluteString)
+                    try imageData.write(to: imagePath)
+                    imagePaths.append(imagePath.path)
                 } catch {
                     print("Error saving image: \(error)")
                 }
             }
         }
-        let newMemory = Memory(id: UUID().uuidString, title: title, summary: summary, photos: imageUrls)
+        
+        let newMemory = Memory(id: UUID().uuidString, title: title, summary: summary, photos: imagePaths)
         memories.append(newMemory)
+        
         do {
             let newData = try JSONEncoder().encode(memories)
             try newData.write(to: fileURL)
@@ -154,6 +141,7 @@ struct AddMemory: View {
         }
     }
 }
+
 #Preview {
-    AddMemory()
+    AddMemory(memories: .constant([]))
 }

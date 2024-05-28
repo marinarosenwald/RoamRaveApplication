@@ -21,13 +21,13 @@ struct Memories: View {
                     Text("Memories")
                         .font(.largeTitle)
                     Spacer()
-                    NavigationLink(destination: AddMemory()) {
+                    NavigationLink(destination: AddMemory(memories: $memories)) {
                         Image(systemName: "plus")
                     }
                 }
                 .padding(.horizontal)
                 List(memories) { memory in
-                    NavigationLink(destination: MemoryDetail(memory: memory)) {
+                    NavigationLink(destination: MemoryDetail(memories: $memories, memory: memory)) {
                         Text(memory.title)
                     }
                     .listRowBackground(babyPink)
@@ -88,7 +88,6 @@ struct Memories: View {
         }
     }
 }
-
 
 #Preview {
     Memories()
