@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F325B2A2C05A1A60057627E /* ActivitiesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F3A84542BDDA897005EFCF6 /* ActivitiesData.json */; };
+		9F325B2F2C0632860057627E /* PhotoLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F325B2E2C0632860057627E /* PhotoLibraryPicker.swift */; };
+		9F325B312C0632BE0057627E /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F325B302C0632BE0057627E /* CameraPicker.swift */; };
 		9F3A844B2BDD9144005EFCF6 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A844A2BDD9144005EFCF6 /* Activities.swift */; };
-		9F3A844D2BDD9457005EFCF6 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A844C2BDD9457005EFCF6 /* ModelData.swift */; };
 		9F3A844F2BDD94D8005EFCF6 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A844E2BDD94D8005EFCF6 /* Favorites.swift */; };
-		9F3A84512BDD96BF005EFCF6 /* ActivitiesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A84502BDD96BF005EFCF6 /* ActivitiesRow.swift */; };
 		9F3A84532BDD97E1005EFCF6 /* ActivityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A84522BDD97E1005EFCF6 /* ActivityDetails.swift */; };
-		9F3A84552BDDA897005EFCF6 /* ActivitiesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F3A84542BDDA897005EFCF6 /* ActivitiesData.json */; };
 		9F3A84572BDDADE4005EFCF6 /* CloseMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A84562BDDADE4005EFCF6 /* CloseMapView.swift */; };
 		9F3A84592BDDC2AB005EFCF6 /* Memories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3A84582BDDC2AB005EFCF6 /* Memories.swift */; };
+		9F63EE142BEFFA8A00E9A569 /* ActivitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63EE132BEFFA8A00E9A569 /* ActivitiesViewModel.swift */; };
+		9F63EE522BF0116900E9A569 /* AddMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63EE512BF0116900E9A569 /* AddMemory.swift */; };
+		9F63EE542BF011B300E9A569 /* MemoriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F63EE532BF011B300E9A569 /* MemoriesData.json */; };
+		9F63EE562BF0146D00E9A569 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63EE552BF0146D00E9A569 /* Memory.swift */; };
+		9F63EE5A2BF0225400E9A569 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63EE592BF0225400E9A569 /* ImagePicker.swift */; };
+		9F63EE5C2BF02E4800E9A569 /* MemoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63EE5B2BF02E4800E9A569 /* MemoryDetail.swift */; };
 		9FA4A38E2BD7035B005FDFB0 /* RoamRaveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4A38D2BD7035B005FDFB0 /* RoamRaveApp.swift */; };
 		9FA4A3902BD7035B005FDFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4A38F2BD7035B005FDFB0 /* ContentView.swift */; };
 		9FA4A3922BD7035C005FDFB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4A3912BD7035C005FDFB0 /* Assets.xcassets */; };
@@ -45,14 +51,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F325B2B2C0629040057627E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9F325B2E2C0632860057627E /* PhotoLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPicker.swift; sourceTree = "<group>"; };
+		9F325B302C0632BE0057627E /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		9F3A844A2BDD9144005EFCF6 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
-		9F3A844C2BDD9457005EFCF6 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		9F3A844E2BDD94D8005EFCF6 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
-		9F3A84502BDD96BF005EFCF6 /* ActivitiesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRow.swift; sourceTree = "<group>"; };
 		9F3A84522BDD97E1005EFCF6 /* ActivityDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetails.swift; sourceTree = "<group>"; };
 		9F3A84542BDDA897005EFCF6 /* ActivitiesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActivitiesData.json; sourceTree = "<group>"; };
 		9F3A84562BDDADE4005EFCF6 /* CloseMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseMapView.swift; sourceTree = "<group>"; };
 		9F3A84582BDDC2AB005EFCF6 /* Memories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memories.swift; sourceTree = "<group>"; };
+		9F63EE132BEFFA8A00E9A569 /* ActivitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewModel.swift; sourceTree = "<group>"; };
+		9F63EE512BF0116900E9A569 /* AddMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemory.swift; sourceTree = "<group>"; };
+		9F63EE532BF011B300E9A569 /* MemoriesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MemoriesData.json; sourceTree = "<group>"; };
+		9F63EE552BF0146D00E9A569 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		9F63EE592BF0225400E9A569 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		9F63EE5B2BF02E4800E9A569 /* MemoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDetail.swift; sourceTree = "<group>"; };
 		9FA4A38A2BD7035B005FDFB0 /* RoamRave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoamRave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA4A38D2BD7035B005FDFB0 /* RoamRaveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamRaveApp.swift; sourceTree = "<group>"; };
 		9FA4A38F2BD7035B005FDFB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,17 +129,24 @@
 		9FA4A38C2BD7035B005FDFB0 /* RoamRave */ = {
 			isa = PBXGroup;
 			children = (
+				9F325B2B2C0629040057627E /* Info.plist */,
+				9F63EE512BF0116900E9A569 /* AddMemory.swift */,
+				9F63EE592BF0225400E9A569 /* ImagePicker.swift */,
+				9F325B2E2C0632860057627E /* PhotoLibraryPicker.swift */,
+				9F325B302C0632BE0057627E /* CameraPicker.swift */,
 				9FA4A38D2BD7035B005FDFB0 /* RoamRaveApp.swift */,
 				9FA4A3FD2BDB9EA1005FDFB0 /* FormsView.swift */,
 				9FA4A38F2BD7035B005FDFB0 /* ContentView.swift */,
 				9F3A84582BDDC2AB005EFCF6 /* Memories.swift */,
+				9F63EE5B2BF02E4800E9A569 /* MemoryDetail.swift */,
 				9F3A84542BDDA897005EFCF6 /* ActivitiesData.json */,
+				9F63EE532BF011B300E9A569 /* MemoriesData.json */,
 				9FA4A3F92BD9F7AD005FDFB0 /* Menu.swift */,
 				9F3A844A2BDD9144005EFCF6 /* Activities.swift */,
-				9F3A844C2BDD9457005EFCF6 /* ModelData.swift */,
+				9F63EE552BF0146D00E9A569 /* Memory.swift */,
 				9F3A844E2BDD94D8005EFCF6 /* Favorites.swift */,
 				9F3A84522BDD97E1005EFCF6 /* ActivityDetails.swift */,
-				9F3A84502BDD96BF005EFCF6 /* ActivitiesRow.swift */,
+				9F63EE132BEFFA8A00E9A569 /* ActivitiesViewModel.swift */,
 				9FA4A3F52BD8B59F005FDFB0 /* MapView.swift */,
 				9F3A84562BDDADE4005EFCF6 /* CloseMapView.swift */,
 				9FA4A3912BD7035C005FDFB0 /* Assets.xcassets */,
@@ -264,9 +284,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F325B2A2C05A1A60057627E /* ActivitiesData.json in Resources */,
+				9F63EE542BF011B300E9A569 /* MemoriesData.json in Resources */,
 				9FA4A3952BD7035C005FDFB0 /* Preview Assets.xcassets in Resources */,
 				9FA4A3922BD7035C005FDFB0 /* Assets.xcassets in Resources */,
-				9F3A84552BDDA897005EFCF6 /* ActivitiesData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,16 +312,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F325B2F2C0632860057627E /* PhotoLibraryPicker.swift in Sources */,
+				9F325B312C0632BE0057627E /* CameraPicker.swift in Sources */,
 				9F3A84572BDDADE4005EFCF6 /* CloseMapView.swift in Sources */,
 				9FA4A3FE2BDB9EA1005FDFB0 /* FormsView.swift in Sources */,
 				9FA4A3902BD7035B005FDFB0 /* ContentView.swift in Sources */,
+				9F63EE562BF0146D00E9A569 /* Memory.swift in Sources */,
+				9F63EE5C2BF02E4800E9A569 /* MemoryDetail.swift in Sources */,
 				9F3A844B2BDD9144005EFCF6 /* Activities.swift in Sources */,
 				9FA4A3F62BD8B59F005FDFB0 /* MapView.swift in Sources */,
+				9F63EE142BEFFA8A00E9A569 /* ActivitiesViewModel.swift in Sources */,
 				9FA4A3FA2BD9F7AD005FDFB0 /* Menu.swift in Sources */,
-				9F3A84512BDD96BF005EFCF6 /* ActivitiesRow.swift in Sources */,
 				9F3A844F2BDD94D8005EFCF6 /* Favorites.swift in Sources */,
 				9FA4A38E2BD7035B005FDFB0 /* RoamRaveApp.swift in Sources */,
-				9F3A844D2BDD9457005EFCF6 /* ModelData.swift in Sources */,
+				9F63EE522BF0116900E9A569 /* AddMemory.swift in Sources */,
+				9F63EE5A2BF0225400E9A569 /* ImagePicker.swift in Sources */,
 				9F3A84592BDDC2AB005EFCF6 /* Memories.swift in Sources */,
 				9F3A84532BDD97E1005EFCF6 /* ActivityDetails.swift in Sources */,
 			);
@@ -466,8 +492,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RoamRave/Preview Content\"";
+				DEVELOPMENT_TEAM = 7B88TW2LBL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoamRave/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Accessing Camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -494,8 +523,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RoamRave/Preview Content\"";
+				DEVELOPMENT_TEAM = 7B88TW2LBL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoamRave/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Accessing Camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
