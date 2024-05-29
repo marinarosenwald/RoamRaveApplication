@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -8,6 +8,7 @@ const { width } = Dimensions.get('window');
 const MemoryDetail = ({ route }) => {
   const { memory } = route.params;
   const navigation = useNavigation();
+  const [textInputHeight, setTextInputHeight] = useState(0);
 
   return (
     <View style={styles.container}>
@@ -41,10 +42,13 @@ const MemoryDetail = ({ route }) => {
         <View style={styles.summaryContainer}>
           <TextInput
             value={memory.summary}
-            style={styles.summary}
+            style={[styles.summary, { height: textInputHeight }]}
             editable={false}
             multiline
-            scrollEnabled
+            onContentSizeChange={(e) =>
+              setTextInputHeight(e.nativeEvent.contentSize.height)
+            }
+            scrollEnabled={false} // Disable internal scrolling
           />
         </View>
       </ScrollView>
@@ -134,7 +138,6 @@ const styles = StyleSheet.create({
     color: '#333',
     lineHeight: 22,
     textAlign: 'center',
-    maxHeight: 100, // Adjusted maximum height
   },
 });
 
