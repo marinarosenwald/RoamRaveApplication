@@ -1,7 +1,7 @@
 # RoamRave
 Marina Rosenwald, Surbhi Gupta
 
-Version 3
+Version 4
 # Summary of Project
 Our mobile app will transform travel and food experiences, catering to the 74% of consumers in the $9.5 trillion travel and tourism industry who want more individualized content (Vrountas, n.d.; WTTC, 2023). It seeks to increase user engagement by as much as 40% through cutting-edge technologies (McKinsey & Company, 2021). Upon arriving in a new city, travelers can open our app to discover top-rated eateries, cozy cafes, and local hotspots on our travel map. Tailored for young travelers, aged 20s to 30s, our app optimizes planning time and eliminates stress by providing well-vetted recommendations. Let the adventure begin!
 # Project Analysis
