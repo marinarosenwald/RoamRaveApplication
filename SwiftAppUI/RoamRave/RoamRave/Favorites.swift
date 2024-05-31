@@ -8,21 +8,19 @@
 import SwiftUI
 
 struct Favorites: View {
-    @StateObject private var viewModel = ActivitiesViewModel()
-    
+    @EnvironmentObject var viewModel: ActivitiesViewModel
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
     let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack {
                 Spacer().frame(height: 25)
-                HStack{
+                HStack {
                     Image("FilledHeart")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-//                        .padding(.bottom, 10)
                         .padding(.trailing, 10)
                     Text("Favorites")
                         .font(.largeTitle)
@@ -30,15 +28,13 @@ struct Favorites: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-//                        .padding(.bottom, 10)
                         .padding(.leading, 10)
                 }
-                
                 
                 List {
                     ForEach(viewModel.activities.filter { $0.isFavorite }) { activity in
                         NavigationLink(destination: ActivityDetails(activity: activity)) {
-                            ActivitiesRow(activity: activity)
+                            Text(activity.name)
                         }
                     }
                     .listRowBackground(babyPink)
@@ -49,12 +45,10 @@ struct Favorites: View {
                     }
                 }
                 .listStyle(PlainListStyle())
-                
-                
                 .navigationTitle("")
                 .navigationBarItems(leading:
                                         HStack {
-                    NavigationLink{
+                    NavigationLink {
                         Menu()
                     } label: {
                         Image("NavIcon")
@@ -73,17 +67,15 @@ struct Favorites: View {
                 .toolbarColorScheme(.dark, for: .navigationBar)
                 .toolbarBackground(skyBlue, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
-                
             }
             .font(.custom("text", size: 30))
             .background(Color.white)
-            
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-
 #Preview {
     Favorites()
+        .environmentObject(ActivitiesViewModel())
 }

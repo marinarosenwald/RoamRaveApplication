@@ -9,11 +9,12 @@ import SwiftUI
 import MapKit
 
 struct Menu: View {
+    @EnvironmentObject var viewModel: ActivitiesViewModel
     
     let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
-    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0) //    254, 188, 255
+    let babyPink = Color(red: 0.9961, green: 0.7373, blue: 1.0)
 
-    @AppStorage ("city") private var city = "Downtown Seattle"
+    @AppStorage("city") private var city = "Downtown Seattle"
     @State private var latitude: Double = 47.6062
     @State private var longitude: Double = -122.335
 
@@ -23,7 +24,7 @@ struct Menu: View {
     var body: some View {
         NavigationView {
             VStack {
-                ZStack{
+                ZStack {
                     Rectangle()
                         .fill(babyPink)
                         .frame(width: 300, height: 100)
@@ -45,7 +46,7 @@ struct Menu: View {
                     .padding()
                 }
                 
-                NavigationLink(destination: ContentView(city: $city,  lat: $latitude, long: $longitude)) {
+                NavigationLink(destination: ContentView(city: $city, lat: $latitude, long: $longitude)) {
                     Text("Suggestions")
                         .foregroundColor(Color.black)
                         .frame(width: 275, height: 70)
@@ -71,6 +72,7 @@ struct Menu: View {
                         .background(skyBlue)
                         .cornerRadius(10)
                 }
+                
                 NavigationLink(destination: Memories()) {
                     Text("Memories")
                         .foregroundColor(Color.black)
@@ -82,19 +84,19 @@ struct Menu: View {
                 
                 .navigationTitle("")
                 .navigationBarItems(leading:
-                                        HStack {
-                    Image("VertNavIcon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 80, height: 80)
-                        .padding(.leading, -10)
-                    
-                    Spacer()
-                    Text("RoamRave")
-                        .foregroundColor(.black)
-                        .bold(true)
-                        .padding(.leading, 30)
-                }
+                    HStack {
+                        Image("VertNavIcon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .padding(.leading, -10)
+                        
+                        Spacer()
+                        Text("RoamRave")
+                            .foregroundColor(.black)
+                            .bold(true)
+                            .padding(.leading, 30)
+                    }
                 )
                 .toolbarColorScheme(.dark, for: .navigationBar)
                 .toolbarBackground(skyBlue, for: .navigationBar)
@@ -108,7 +110,8 @@ struct Menu: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-    }
+    }
+    
     func updateCoordinates(city: String) {
         // Update latitude and longitude based on the selected city
         switch city {
