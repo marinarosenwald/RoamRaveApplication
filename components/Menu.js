@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        opacity: 0, // Hide the default picker, we use the text to display the value
+        opacity: 0, 
     },
     button: {
         width: 300,

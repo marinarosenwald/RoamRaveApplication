@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 2, // Reduce vertical padding
+    paddingVertical: 2, 
   },
   title: {
     fontSize: 28,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   spacer: {
-    height: -3, // Further reduced height
+    height: -3, 
   },
   spacerLarge: {
     height: 0.2,

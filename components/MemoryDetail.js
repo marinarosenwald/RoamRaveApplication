@@ -48,7 +48,7 @@ const MemoryDetail = ({ route }) => {
             onContentSizeChange={(e) =>
               setTextInputHeight(e.nativeEvent.contentSize.height)
             }
-            scrollEnabled={false} // Disable internal scrolling
+            scrollEnabled={false}
           />
         </View>
       </ScrollView>
@@ -108,15 +108,15 @@ const styles = StyleSheet.create({
   imageContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start', // Align items to the left
+    justifyContent: 'flex-start', 
   },
   imageWrapper: {
     margin: 5,
     borderRadius: 10,
     overflow: 'hidden',
     backgroundColor: '#eaeaea',
-    width: (width / 2) - 20, // Adjusted width to fit two images per row with margin
-    height: (width / 2) - 20, // Adjusted height to fit two images per row
+    width: (width / 2) - 20, 
+    height: (width / 2) - 20, 
   },
   image: {
     width: '100%',
