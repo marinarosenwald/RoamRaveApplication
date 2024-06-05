@@ -1,7 +1,7 @@
 # RoamRave
-Surbhi Gupta, Marina Rosenwald
+Marina Rosenwald, Surbhi Gupta
 
-Version 1
+Version 4
 # Summary of Project
 Our mobile app will transform travel and food experiences, catering to the 74% of consumers in the $9.5 trillion travel and tourism industry who want more individualized content (Vrountas, n.d.; WTTC, 2023). It seeks to increase user engagement by as much as 40% through cutting-edge technologies (McKinsey & Company, 2021). Upon arriving in a new city, travelers can open our app to discover top-rated eateries, cozy cafes, and local hotspots on our travel map. Tailored for young travelers, aged 20s to 30s, our app optimizes planning time and eliminates stress by providing well-vetted recommendations. Let the adventure begin!
 # Project Analysis
@@ -37,10 +37,19 @@ We can monetize our application by allowing businesses to pay to be promoted on 
 <img width="979" alt="Screenshot 2024-04-14 at 6 38 02 PM" src="https://github.com/marinarosenwald/RoamRaveApplication/assets/137995666/a559fb4b-878f-4c8f-9f2e-8e65aa674162">
 Limitations: within the scope of this class we will focus only on King County as we want to keep our suggestion data on the app to avoid expenses with cloud storage and access.  
 
+## Prototype Design Update 
+<img width="992" alt="Screenshot 2024-04-28 at 3 32 09 PM" src="https://github.com/marinarosenwald/RoamRaveApplication/assets/137995666/52d8aa97-090d-4043-bb0e-e776c6804a70">
+
+<img width="1112" alt="Screenshot 2024-05-11 at 11 16 57 PM" src="https://github.com/marinarosenwald/RoamRaveApplication/assets/137995666/290e7b8a-d73b-48cc-a5aa-0c9c93c9de6a">
+
+<img width="1066" alt="Screenshot 2024-05-30 at 11 59 55 PM" src="https://github.com/marinarosenwald/RoamRaveApplication/assets/137995666/280b94b3-4243-46c9-9f90-3dff5246eaba">
+
+
 ## UI/UX Design
 The Home Page needs to at least show a map of the area highlighted (it doesn’t need to be interactable, though, ideally it would be), a list of things to do that navigate to their corresponding To-do Page, and a navigation icon to navigate to the User Page. This page should give the user clear, well-vetted suggestions. The User Page needs to have a way for the user to edit the location, navigate to the Suggestion/Home Page, the Forms Page, the Favorites Page, and the Memories Page. The User Page should be a simple and easy way to navigate through the app. The To-do Page has to have a navigation icon to navigate to the User Page, show where the location is on a map, what category the location is in (i.e. a restaurant, hike, pub, etc.), a description of the location, and a way to favorite the location. This page should give the user a clear understanding of what the location is and they should be able to decide if they will enjoy it or not from the description. The Forms Page has to have a navigation icon to navigate to the User Page, a button to click that navigates the user to a google form where they can submit their own suggestions for things to do in their city, and a google form where they can submit their review of their experience on the app. This page allows for the users to submit suggestions and feedback about the application. The Favorites Page has to have a navigation icon to navigate to the User Page and a list of things to do that navigate to their corresponding To-do Page. This allows the user to bookmark spots they want to go to. The Memories Page has to have a navigation icon to navigate to the User Page, a list of things to do that navigate to their corresponding View Memory Page, and an icon that navigates to the Add Memory Page. The View Memory Page has to have a way to navigate back to the Memories Page, a memory title, display the user-uploaded photos (if applicable), and display the user-submitted summary (if applicable). The Add Memory Page has to have a way to navigate back to the Memories Page, a textbox for the user to input a memory title, a photos button/NavLink that will navigate the user to the Photo Page, and a textbox for the user to input a summary. The Photo Page has to have a way to navigate back to the Add Memory Page, a way to access the phone’s camera and a way to access the phone’s camera roll. The memory pages allow the user to look back on their experiences giving the user access to a digital travel journal in the app. 
+
 ## Technical Architecture
-Languages: React Native with Node.js for server-side logic.
+Languages: Swift written in XCode
 
 Database: Local storage initially. The app will use .json files to store information for the to-do lists and the user’s input for the memory pages. 
 
