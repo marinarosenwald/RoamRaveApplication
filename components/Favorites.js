@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import ActivitiesViewModel from './ActivitiesViewModel'; // Make sure this is the correct path
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const Favorites = () => {
   const [activities, setActivities] = useState([]);
   const navigation = useNavigation();
   const skyBlue = '#76d6ff';
   const babyPink = '#ffbbe0';
-
-  useEffect(() => {
-    loadActivitiesData();
-  }, []);
 
   const loadActivitiesData = async () => {
     try {
@@ -25,6 +20,16 @@ const Favorites = () => {
       console.error("Error loading activities:", error);
     }
   };
+
+  useEffect(() => {
+    loadActivitiesData();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadActivitiesData();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>

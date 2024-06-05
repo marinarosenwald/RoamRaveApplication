@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -8,6 +8,7 @@ const { width } = Dimensions.get('window');
 const MemoryDetail = ({ route }) => {
   const { memory } = route.params;
   const navigation = useNavigation();
+  const [textInputHeight, setTextInputHeight] = useState(0);
 
   return (
     <View style={styles.container}>
@@ -24,7 +25,7 @@ const MemoryDetail = ({ route }) => {
         </TouchableOpacity>
         <Text style={styles.title}>{memory.title}</Text>
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.imageContainer}>
           {memory.photos.map((photoURLString, index) => (
             <View key={index} style={styles.imageWrapper}>
@@ -38,10 +39,19 @@ const MemoryDetail = ({ route }) => {
             </View>
           ))}
         </View>
+        <View style={styles.summaryContainer}>
+          <TextInput
+            value={memory.summary}
+            style={[styles.summary, { height: textInputHeight }]}
+            editable={false}
+            multiline
+            onContentSizeChange={(e) =>
+              setTextInputHeight(e.nativeEvent.contentSize.height)
+            }
+            scrollEnabled={false} // Disable internal scrolling
+          />
+        </View>
       </ScrollView>
-      <View style={styles.summaryContainer}>
-        <Text style={styles.summary}>{memory.summary}</Text>
-      </View>
     </View>
   );
 };
@@ -92,19 +102,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    marginBottom: 10,
+    flexGrow: 1,
+    paddingHorizontal: 10,
   },
   imageContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start', // Align items to the left
   },
   imageWrapper: {
     margin: 5,
     borderRadius: 10,
     overflow: 'hidden',
     backgroundColor: '#eaeaea',
-    width: width * 0.45,
-    height: width * 0.45,
+    width: (width / 2) - 20, // Adjusted width to fit two images per row with margin
+    height: (width / 2) - 20, // Adjusted height to fit two images per row
   },
   image: {
     width: '100%',
@@ -118,6 +130,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 20,
     alignItems: 'center',
+    flex: 1,
+    justifyContent: 'flex-start'
   },
   summary: {
     fontSize: 16,
