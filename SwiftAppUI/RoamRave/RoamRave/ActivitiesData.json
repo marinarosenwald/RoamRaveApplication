@@ -1,0 +1,254 @@
+[
+    {
+        "name": "Elliott's Oyster House",
+        "category": "Restaurant",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1001,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.34037,
+            "latitude": 47.6054
+        },
+        "description": "Experience the finest seafood Seattle has to offer at Elliott's Oyster House, a waterfront gem with stunning views of Puget Sound. Indulge in an unparalleled selection of fresh, locally sourced oysters, expertly shucked and served to perfection. The menu, crafted with sustainability in mind, features a variety of delectable dishes, from Dungeness crab to wild Alaskan salmon. Enjoy impeccable service in a warm and inviting atmosphere, ideal for both casual dining and special occasions. With its prime location and exceptional cuisine, Elliott's Oyster House promises a memorable dining experience that captures the essence of the Pacific Northwest."
+    },
+    {
+        "name": "Seattle Art Museum",
+        "category": "Museum",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1002,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.33787,
+            "latitude": 47.60737
+        },
+        "description": "Discover a world of artistic wonder at the Seattle Art Museum, where diverse collections and inspiring exhibitions await. Immerse yourself in a rich tapestry of art spanning cultures and centuries, from contemporary masterpieces to ancient treasures. Engage with thought-provoking installations and rotating exhibits that keep each visit fresh and exciting. Located in the heart of downtown Seattle, the museum offers a vibrant cultural experience, complete with educational programs and interactive activities for all ages. A visit to the Seattle Art Museum is a journey through creativity and history that will leave you inspired and enriched."
+    },
+    {
+        "name": "Space Needle",
+        "category": "Landmark",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1005,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.34938,
+            "latitude": 47.62060
+        },
+        "description": "Discover breathtaking views and an iconic experience at Seattle's Space Needle, a must-visit landmark offering a 360-degree panorama of the city's stunning skyline. Ascend to the top and marvel at the sweeping vistas of Puget Sound, the Cascade and Olympic Mountains, and bustling downtown Seattle. The recently renovated observation deck features floor-to-ceiling glass walls and a thrilling glass floor, providing an unparalleled perspective of the city below. Enjoy a meal at the rotating SkyCity Restaurant, where gourmet cuisine is paired with ever-changing scenery. A visit to the Space Needle promises an unforgettable adventure, capturing the essence of Seattle from a truly unique vantage point."
+    },
+    {
+        "name": "Seattle Aquarium",
+        "category": "Aquarium",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1006,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.34283,
+            "latitude": 47.60740
+        },
+        "description": "Dive into the wonders of marine life at the Seattle Aquarium, an engaging and educational destination on the scenic Seattle waterfront. Explore a diverse array of exhibits showcasing the vibrant ecosystems of the Pacific Northwest, from playful sea otters and graceful jellyfish to the mesmerizing Giant Pacific Octopus. Interactive displays and touch pools offer hands-on experiences, perfect for visitors of all ages to connect with the ocean's inhabitants. Attend daily talks and feeding shows to learn from knowledgeable staff about marine conservation efforts and the fascinating behaviors of aquatic animals. A visit to the Seattle Aquarium provides an unforgettable journey beneath the waves, inspiring a deeper appreciation for the beauty and importance of our oceans."
+    },
+    {
+        "name": "Pike Place Market",
+        "category": "Landmark",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1007,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.34070,
+            "latitude": 47.60853
+        },
+        "description": "Immerse yourself in the vibrant atmosphere of Pike Place Market, Seattle's historic and bustling marketplace. Wander through a maze of stalls featuring fresh, locally sourced produce, artisanal foods, and handcrafted goods, showcasing the best of the Pacific Northwest. Watch the famous fishmongers toss the catch of the day, and sample an array of culinary delights from the market’s diverse food vendors. Explore unique shops, galleries, and street performances, all set against the backdrop of stunning waterfront views. A visit to Pike Place Market is a sensory feast and a quintessential Seattle experience, blending rich history with contemporary charm."
+    },
+    {
+        "name": "The Pink Door",
+        "category": "Landmark",
+        "city": "Downtown Seattle",
+        "state": "Washington",
+        "id": 1008,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.34266,
+            "latitude": 47.61032
+        },
+        "description": "Step into the enchanting world of The Pink Door, a beloved Seattle restaurant known for its delicious Italian cuisine and whimsical ambiance. Tucked away in Post Alley, this hidden gem offers a charming dining experience with a menu featuring fresh, locally sourced ingredients and classic Italian dishes. Enjoy the cozy, vintage-inspired decor, complete with live entertainment, including aerial performances and cabaret shows, creating a truly unique atmosphere. The rooftop patio provides stunning views of Elliott Bay, making it an ideal spot for a romantic dinner or a special celebration. A visit to The Pink Door promises an unforgettable evening filled with delightful food, captivating performances, and an inviting, magical setting."
+    },
+    {
+        "name": "Legion",
+        "category": "Restaurant",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1013,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20079,
+            "latitude": 47.61622
+        },
+        "description": "Savor the soulful flavors of the South at Legion, Downtown Bellevue's premier destination for authentic soul food cuisine. Immerse yourself in a warm and welcoming atmosphere, where every dish is crafted with love and tradition. From crispy fried chicken and tender collard greens to savory macaroni and cheese, each bite at Legion is a culinary journey steeped in heritage and flavor. Whether you're dining in the cozy interior or soaking up the sunshine on the outdoor patio, you'll feel like family as you indulge in soulful classics and modern twists on Southern favorites. With its soul-stirring dishes and heartfelt hospitality, Legion invites you to experience the soul food renaissance in the heart of Bellevue."
+    },
+    {
+        "name": "Bellevue Art Museum",
+        "category": "Museum",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1003,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20133,
+            "latitude": 47.61533
+        },
+        "description": "Explore the innovative and dynamic world of contemporary art at the Bellevue Arts Museum, a premier destination for art lovers in the Pacific Northwest. Specializing in craft, design, and fine art, the museum features thought-provoking exhibitions that challenge conventional boundaries and celebrate creativity. Located in the vibrant Bellevue downtown, the museum offers a range of engaging programs, workshops, and events for visitors of all ages. With its focus on local and international artists, the Bellevue Arts Museum provides a unique cultural experience that inspires and educates. A visit to this museum promises a deep dive into the transformative power of art and design."
+    },
+    {
+        "name": "Bellevue Downtown Park",
+        "category": "Park",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1009,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20393,
+            "latitude": 47.61252
+        },
+        "description": "Escape the hustle and bustle of the city and unwind in the serene oasis of Bellevue Downtown Park, a tranquil retreat in the heart of Bellevue. Stroll through lush greenery and beautifully landscaped gardens, perfect for picnics, leisurely walks, or simply enjoying the fresh air. Explore winding pathways, scenic bridges, and tranquil ponds, offering picturesque views and opportunities for relaxation. The expansive lawn space provides ample room for outdoor activities, from yoga sessions to frisbee games with friends and family. With its peaceful ambiance and scenic beauty, Bellevue Downtown Park is a rejuvenating haven for nature lovers and urban explorers alike."
+    },
+    {
+        "name": "The Bellevue Collection",
+        "category": "Mall",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1010,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20381,
+            "latitude": 47.61566
+        },
+        "description": "Discover a world of luxury and style at The Bellevue Collection, the premier shopping destination on the Eastside. Explore a curated selection of upscale boutiques, designer stores, and leading fashion brands, offering everything from high-end apparel to exquisite jewelry and accessories. Indulge in a day of retail therapy at Bellevue Square, where iconic retailers mingle with exclusive shops, providing an unparalleled shopping experience. Dine at award-winning restaurants and cafes, or catch a movie at the state-of-the-art cinema, completing your day of leisure and entertainment. Whether you're seeking the latest fashion trends or gourmet dining options, The Bellevue Collection offers sophistication and elegance at every turn."
+    },
+    {
+        "name": "Lucky Strike",
+        "category": "Bowling Alley",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1011,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20042,
+            "latitude": 47.61656
+        },
+        "description": "Get ready to roll in style at Lucky Strike, Bellevue's premier upscale bowling lounge and entertainment destination. Step into a chic and vibrant atmosphere where sleek lanes, plush seating, and modern decor set the stage for an unforgettable night out. Whether you're a seasoned bowler or just out for some fun, Lucky Strike offers state-of-the-art bowling lanes equipped with cutting-edge technology for an exhilarating experience. Take a break from bowling to enjoy craft cocktails, delicious bites, and live music in the stylish lounge area. With its lively ambiance and top-notch amenities, Lucky Strike promises an exciting and memorable evening for friends, families, and corporate events alike."
+    },
+    {
+        "name": "Forum Social House",
+        "category": "Bar",
+        "city": "Bellevue",
+        "state": "Washington",
+        "id": 1012,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.20042,
+            "latitude": 47.61656
+        },
+        "description": "Embark on a one-of-a-kind social adventure at Forum Social House, Bellevue's premier entertainment destination merging gaming, dining, and nightlife. Immerse yourself in a dynamic atmosphere where cutting-edge technology meets classic games like bowling, billiards, and arcade favorites. Challenge friends to friendly competitions, or unwind with craft cocktails and gourmet bites in the stylish lounge area. Elevate your experience with private karaoke rooms, complete with state-of-the-art sound systems and an extensive song library. Whether you're celebrating a special occasion or simply enjoying a night out, Forum Social House offers endless opportunities for fun and camaraderie in a vibrant and welcoming setting."
+    },
+    {
+        "name": "Matador",
+        "category": "Restaurant",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1004,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.12306,
+            "latitude": 47.67327
+        },
+        "description": "Experience the bold flavors and vibrant atmosphere of Matador in Redmond, where modern Mexican cuisine meets handcrafted cocktails. Delight in a diverse menu featuring fresh, high-quality ingredients, from savory tacos and enchiladas to sizzling fajitas and mouthwatering appetizers. The rustic yet chic decor, complete with handcrafted ironwork and warm lighting, creates an inviting ambiance perfect for any occasion. Enjoy an extensive tequila selection and creative cocktails that perfectly complement the rich flavors of your meal. At Matador in Redmond, every visit is a celebration of exceptional food, drink, and unforgettable dining experiences."
+    }, 
+    {
+        "name": "Flatstick Pub",
+        "category": "Pub",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1014,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.12126,
+            "latitude": 47.67106
+        },
+        "description": "Elevate your game at Flatstick Pub, Redmond's ultimate destination for craft beer and mini-golf enthusiasts alike. Step into a lively and inviting space, where the thrill of competition meets the camaraderie of a neighborhood pub. Putt your way through imaginative and challenging mini-golf courses designed with local flair, while sipping on a rotating selection of Pacific Northwest brews on tap. Test your skills at other unique games like duffleboard or table tennis, ensuring there's never a dull moment at Flatstick Pub. With its laid-back atmosphere, delicious brews, and endless entertainment options, Flatstick Pub is the perfect spot to unwind with friends or host your next unforgettable event."
+    },
+    {
+        "name": "Blazing Bagels",
+        "category": "Restaurant",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1015,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.10633,
+            "latitude": 47.66718
+        },
+        "description": "Satisfy your cravings at Blazing Bagels, Redmond's go-to spot for freshly baked, New York-style bagels with a Pacific Northwest twist. Start your day right with a hearty breakfast sandwich, featuring a warm, fluffy bagel stuffed with your choice of savory meats, melted cheeses, and farm-fresh eggs. Or, opt for a classic bagel topped with creamy schmear and smoked salmon for a taste of Seattle's iconic flavors. With a wide variety of bagel flavors and inventive toppings to choose from, Blazing Bagels offers something delicious for every palate. Whether you're grabbing a quick bite on the go or relaxing with a leisurely brunch, Blazing Bagels is sure to become your new favorite spot for a taste of East Coast tradition in the heart of the Pacific Northwest."
+    },
+    {
+        "name": "Tipsy Cow Burger Bar",
+        "category": "Restaurant",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1016,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.12224,
+            "latitude": 47.67309
+        },
+        "description": "Get ready for a culinary adventure at Tipsy Cow Burger Bar, where gourmet burgers and craft cocktails reign supreme in Redmond's dining scene. Sink your teeth into juicy, handcrafted burgers made with locally sourced, premium ingredients, served on artisanal buns baked fresh daily. Whether you're craving a classic cheeseburger or feeling adventurous with a specialty creation like the Tipsy Duck, there's a burger to satisfy every palate. Pair your meal with a creative cocktail or local brew from the extensive drink menu, curated to complement the bold flavors of the burgers. With its relaxed atmosphere and dedication to quality, Tipsy Cow Burger Bar is the ultimate destination for burger enthusiasts and foodies alike."
+    },
+    {
+        "name": "Farine Bakery & Cafe",
+        "category": "Restaurant",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1017,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.12050,
+            "latitude": 47.67375
+        },
+        "description": "Experience a slice of Parisian charm at Farine Bakery & Cafe, a delightful oasis in Redmond where artisanal bread and pastries meet cozy ambiance. Start your day with a flaky croissant or buttery pain au chocolat, paired perfectly with a rich espresso or handcrafted latte. Indulge in a variety of freshly baked bread, from rustic baguettes to hearty whole grain loaves, crafted with care and traditional techniques. The menu also features a selection of savory sandwiches, salads, and quiches, made with the finest locally sourced ingredients. With its warm hospitality and mouthwatering offerings, Farine Bakery & Cafe invites you to savor the simple pleasures of good food and good company in a charming European-inspired setting."
+    },
+    {
+        "name": "Palmer's East Dive Bar",
+        "category": "Bar",
+        "city": "Redmond",
+        "state": "Washington",
+        "id": 1018,
+        "isFeatured": true,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -122.12304,
+            "latitude": 47.67377
+        },
+        "description": "Step into the laid-back charm of Palmer's East Dive Bar, a beloved neighborhood hangout in Redmond where good times and great drinks are always on tap. Sink into a cozy booth or pull up a stool at the bar and unwind with a cold beer from the impressive selection of local brews and classic favorites. From friendly bartenders to lively regulars, the welcoming atmosphere at Palmer's East Dive Bar makes everyone feel like family. Whether you're shooting pool, catching the game on TV, or simply enjoying the company of friends, Palmer's East Dive Bar is the perfect spot to kick back, relax, and embrace the spirit of the dive bar experience in Redmond."
+    }
+]
